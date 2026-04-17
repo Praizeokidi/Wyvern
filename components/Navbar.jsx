@@ -13,7 +13,7 @@ export default function Navbar() {
     const [openDropdown, setOpenDropdown] = useState(false);
 
     const links = [
-        { name: "Home", path: "/home" },
+        { name: "Home", path: "/#" },
         { name: "Services", path: "/services" },
         { name: "Downloads", path: "/downloads" },
         { name: "Recharge", path: "/recharge" },
