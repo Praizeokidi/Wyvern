@@ -4,9 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Jost } from "next/font/google";
 
-const jost = Jost({
-    subsets: ["latin"],
-});
+const jost = Jost({ subsets: ["latin"] });
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,122 +21,169 @@ export default function Navbar() {
     const rechargeOptions = [
         { name: "Check-Balance", path: "/recharge/check-balance" },
         { name: "Top-Up", path: "/recharge/top-up" },
-
     ];
 
     return (
-        <nav className={`${jost.className} w-full bg-blue-900 text-white px-6 py-4 flex justify-between items-center fixed top-0 z-50 shadow`}>
-            {/* Logo */}
-            <h1 className="text-2xl font-bold">WYVERN</h1>
+        <nav className={`${jost.className} fixed top-0 w-full z-50`}>
+            {/* Glass Background */}
+            <div className="backdrop-blur-xl bg-white/10 border-b border-white/10 shadow-lg">
+                <div className="flex justify-between items-center px-6 py-4">
 
-            {/* Desktop Links */}
-            <ul className="hidden md:flex gap-8 text-sm items-center">
-                {links.map((link) =>
-                    link.name === "Recharge" ? (
-                        <li
-                            key={link.name}
-                            className="relative cursor-pointer"
-                            onMouseEnter={() => setOpenDropdown(true)}
-                            onMouseLeave={() => setOpenDropdown(false)}
-                        >
-                            <span className="hover:text-blue-300">
-                                {link.name} ▾
-                            </span>
+                    {/* Logo */}
+                    <motion.h1
+                        className="text-2xl font-bold text-white tracking-wider"
+                        whileHover={{ scale: 1.05 }}
+                    >
+                        WYVERN
+                    </motion.h1>
 
-                            {/* Dropdown */}
-                            <AnimatePresence>
-                                {openDropdown && (
-                                    <motion.ul
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="absolute top-8 left-0 bg-blue-800 rounded-lg shadow-lg py-2 w-40"
+                    {/* Desktop Links */}
+                    <ul className="hidden md:flex gap-10 items-center text-sm relative">
+                        {links.map((link) =>
+                            link.name === "Recharge" ? (
+                                <li
+                                    key={link.name}
+                                    className="relative"
+                                    onMouseEnter={() => setOpenDropdown(true)}
+                                    onMouseLeave={() => setOpenDropdown(false)}
+                                >
+                                    <motion.span
+                                        className="cursor-pointer text-white/80 hover:text-white transition"
+                                        whileHover={{ y: -2 }}
                                     >
-                                        {rechargeOptions.map((item) => (
-                                            <li key={item.name}>
-                                                <Link
-                                                    href={item.path}
-                                                    className="block px-4 py-2 hover:bg-blue-700"
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </motion.ul>
-                                )}
-                            </AnimatePresence>
-                        </li>
-                    ) : (
-                        <li key={link.name} className="hover:text-blue-300 cursor-pointer">
-                            <Link href={link.path}>{link.name}</Link>
-                        </li>
-                    )
-                )}
-            </ul>
+                                        {link.name} ▾
+                                    </motion.span>
 
-            {/* CTA */}
-            <button className="hidden md:block bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-400 transition">
-                Get Your WYVERN Line
-            </button>
+                                    {/* Dropdown */}
+                                    <AnimatePresence>
+                                        {openDropdown && (
+                                            <motion.ul
+                                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute top-10 left-0 w-48 rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl p-2"
+                                            >
+                                                {rechargeOptions.map((item) => (
+                                                    <motion.li
+                                                        key={item.name}
+                                                        whileHover={{ scale: 1.03 }}
+                                                    >
+                                                        <Link
+                                                            href={item.path}
+                                                            className="block px-4 py-2 rounded-lg hover:bg-white/10 transition"
+                                                        >
+                                                            {item.name}
+                                                        </Link>
+                                                    </motion.li>
+                                                ))}
+                                            </motion.ul>
+                                        )}
+                                    </AnimatePresence>
+                                </li>
+                            ) : (
+                                <motion.li
+                                    key={link.name}
+                                    whileHover={{ y: -2 }}
+                                    className="relative group"
+                                >
+                                    <Link
+                                        href={link.path}
+                                        className="text-white/80 group-hover:text-white transition"
+                                    >
+                                        {link.name}
+                                    </Link>
 
-            {/* Mobile Hamburger */}
-            <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? "✖" : "☰"}
-            </button>
+                                    {/* Animated underline */}
+                                    <motion.span
+                                        layoutId="underline"
+                                        className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-400 group-hover:w-full transition-all duration-300"
+                                    />
+                                </motion.li>
+                            )
+                        )}
+                    </ul>
+
+                    {/* CTA Button */}
+                    <motion.button
+                        className="hidden md:block px-5 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-400 text-white shadow-lg relative overflow-hidden"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <span className="relative z-10">Get Your WYVERN Line</span>
+
+                        {/* Glow Effect */}
+                        <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition" />
+                    </motion.button>
+
+                    {/* Mobile Toggle */}
+                    <button
+                        className="md:hidden text-white text-xl"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        {isOpen ? "✖" : "☰"}
+                    </button>
+                </div>
+            </div>
 
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.ul
-                        initial={{ opacity: 0, y: -20 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: -30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-16 left-0 w-full bg-blue-900 flex flex-col items-center gap-4 py-4 md:hidden"
+                        exit={{ opacity: 0, y: -30 }}
+                        transition={{ duration: 0.3 }}
+                        className="md:hidden bg-black/80 backdrop-blur-xl px-6 py-6 space-y-4"
                     >
                         {links.map((link) =>
                             link.name === "Recharge" ? (
-                                <li key={link.name} className="text-center">
+                                <div key={link.name}>
                                     <button
                                         onClick={() => setOpenDropdown(!openDropdown)}
-                                        className="hover:text-blue-300"
+                                        className="text-white text-lg"
                                     >
                                         {link.name} ▾
                                     </button>
 
-                                    {/* Mobile Dropdown */}
-                                    {openDropdown && (
-                                        <ul className="mt-2 space-y-2">
-                                            {rechargeOptions.map((item) => (
-                                                <li key={item.name}>
+                                    <AnimatePresence>
+                                        {openDropdown && (
+                                            <motion.div
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: "auto" }}
+                                                exit={{ opacity: 0, height: 0 }}
+                                                className="pl-4 mt-2 space-y-2"
+                                            >
+                                                {rechargeOptions.map((item) => (
                                                     <Link
+                                                        key={item.name}
                                                         href={item.path}
                                                         onClick={() => setIsOpen(false)}
-                                                        className="block hover:text-blue-300"
+                                                        className="block text-white/80"
                                                     >
                                                         {item.name}
                                                     </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </li>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             ) : (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.path}
-                                        onClick={() => setIsOpen(false)}
-                                        className="hover:text-blue-300"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </li>
+                                <Link
+                                    key={link.name}
+                                    href={link.path}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block text-white text-lg"
+                                >
+                                    {link.name}
+                                </Link>
                             )
                         )}
 
-                        <button className="bg-blue-500 px-6 py-2 rounded-lg hover:bg-blue-400 transition mt-2">
+                        <button className="w-full bg-blue-500 py-3 rounded-xl mt-4">
                             Get Your Line
                         </button>
-                    </motion.ul>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </nav>

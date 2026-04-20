@@ -11,6 +11,20 @@ import {
 } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
+import { Jost } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+
+
+
+
+const jost = Jost({
+    subsets: ["latin"],
+});
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
+});
+
 
 export default function Services() {
 
@@ -71,7 +85,7 @@ export default function Services() {
     };
 
     return (
-        <div className="bg-slate-950 py-14">
+        <div className="bg-slate-950 py-8">
 
             <section className="max-w-5xl mx-auto px-5">
 
@@ -80,7 +94,7 @@ export default function Services() {
                     initial={{ opacity: 0, y: -10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-center text-white"
+                    className={`${jost.className} text-3xl md:text-3xl font-bold text-center text-white`}
                 >
                     Our Services
                 </motion.h2>
@@ -91,7 +105,7 @@ export default function Services() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8"
+                    className={`${jost.className} grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8`}
                 >
                     {services.map((service, i) => {
                         const Icon = service.icon;
@@ -113,7 +127,7 @@ export default function Services() {
                                 </div>
 
                                 {/* TITLE */}
-                                <h4 className="text-base font-semibold text-gray-800 mb-1">
+                                <h4 className="text-lg font-bold text-gray-800 mb-1">
                                     {service.title}
                                 </h4>
 
