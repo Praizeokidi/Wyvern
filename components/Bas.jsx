@@ -36,7 +36,7 @@ export default function BookSession() {
 
                 {/* RIGHT BUTTON */}
                 <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-                    <Link href="/book-session">
+                    <Link href="/contact">
                         <button className={`${jost.className} bg-[#2d7fb0] hover:bg-[#1f5f85] text-white
                         px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg
                         rounded-lg shadow-md transition duration-300`}>
