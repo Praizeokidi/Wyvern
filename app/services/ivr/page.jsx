@@ -152,7 +152,7 @@ export default function IVRPage() {
                             Streamlined Business Communication and Marketing Efficiency
                         </strong>
                         <br />
-                        By streamlining all business communications, the STN Interactive voice response system enhances marketing and lead management proficiency. This ensures flawless execution of marketing strategies, resulting in higher lead conversion rates and improved business outcomes.
+                        By streamlining all business communications, the WYVERN Interactive voice response system enhances marketing and lead management proficiency. This ensures flawless execution of marketing strategies, resulting in higher lead conversion rates and improved business outcomes.
 
                         Read about lead management best practices.</p>
                     <p className={`${inter.className}`}>
@@ -170,7 +170,7 @@ export default function IVRPage() {
                 </h3>
 
                 <p className={`${inter.className} text-sm text-gray-600 mt-1 mb-2`}>
-                    By integrating STN’s advanced IVR system solution, you are investing in a robust tool that reduces costs, improves customer service, and supports comprehensive marketing strategies. Here’s why it stands out:
+                    By integrating WYVERN’s advanced IVR system solution, you are investing in a robust tool that reduces costs, improves customer service, and supports comprehensive marketing strategies. Here’s why it stands out:
                 </p>
 
                 <ul className={`${inter.className} list-disc ml-5 text-sm text-gray-600 space-y-2`}>
@@ -184,7 +184,7 @@ export default function IVRPage() {
                     Experience the Future of Business Communication
                 </h3>
                 <p className={`${inter.className} text-sm text-gray-600 mt-1 mb-2`}>
-                    Transform your business operations with STN’s advanced IVR system solution. Invest in a tool that not only cuts costs but also enhances customer service and supports comprehensive marketing strategies.
+                    Transform your business operations with WYVERN’s advanced IVR system solution. Invest in a tool that not only cuts costs but also enhances customer service and supports comprehensive marketing strategies.
 
                     For more detailed information about our IVR system and other communication solutions. </p>
             </section>

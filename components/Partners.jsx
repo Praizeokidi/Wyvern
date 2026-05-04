@@ -36,7 +36,7 @@ export default function Partners() {
     return (
         <section className="bg-gray-100 py-8 px-6">
             <div className="max-w-6xl mx-auto text-center">
-                <h2 className={`${jost.className} text-3xl font-bold text-blue-700 mb-8`}>
+                <h2 className={`${jost.className} text-3xl font-bold text-blue-900 mb-8`}>
                     Our Partners
                 </h2>
 

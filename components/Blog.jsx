@@ -3,12 +3,12 @@ import { Jost } from "next/font/google";
 import Image from "next/image";
 
 const posts = [
-    { id: 1, image: "/hero1.jpg", title: "Sample Blog Title" },
-    { id: 2, image: "/hero2.jpg", title: "Sample Blog Title" },
-    { id: 3, image: "/hero3.jpg", title: "Sample Blog Title" },
-    { id: 4, image: "/hero4.jpg", title: "Sample Blog Title" },
-    { id: 5, image: "/hero5.png", title: "Sample Blog Title" },
-    { id: 6, image: "/hero6.png", title: "Sample Blog Title" }
+    { id: 1, image: "/hero1.jpg", title: "Experience Seemless Internet Speed" },
+    { id: 2, image: "/hero2.jpg", title: "Maximise Your Potential" },
+    { id: 3, image: "/hero3.jpg", title: "Stay Connected with Ease" },
+    { id: 4, image: "/hero4.jpg", title: "Boost Your Productivity with Our Tools" },
+    { id: 5, image: "/hero5.png", title: "Transform Your Workspace" },
+    { id: 6, image: "/hero6.png", title: "Organise Video Conferences Effortlessly" }
 ];
 
 const jost = Jost({
@@ -46,7 +46,7 @@ export default function Blog() {
                                     {post.title}
                                 </h3>
                                 <p className="text-xs text-gray-400">
-                                    5 min read • 2024
+                                    5 min read • 2026
                                 </p>
                             </div>
                         </div>

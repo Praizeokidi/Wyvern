@@ -1,10 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react"; // ✅ ADDED
+import { Jost } from "next/font/google";
 import Image from "next/image";
 import { Maven_Pro } from "next/font/google";
 import { Cairo } from "next/font/google";
-
+import WyvernFormModal from "@/components/get-your-line";
 
 
 const cairo = Cairo({
@@ -19,10 +20,14 @@ const mavenPro = Maven_Pro({
 
 
 
+const jost = Jost({ subsets: ["latin"] });
+
 
 
 
 export default function Hero() {
+
+    const [modalOpen, setModalOpen] = useState(false)
 
     // ✅ ADDED: slider images
     const slides = [
@@ -32,8 +37,13 @@ export default function Hero() {
         "/hero4.jpg",
     ];
 
+
+
     // ✅ ADDED: slider state
     const [index, setIndex] = useState(0);
+
+
+
 
     // ✅ ADDED: auto slideshow (5s like Elementor)
     useEffect(() => {
@@ -44,8 +54,10 @@ export default function Hero() {
         return () => clearInterval(interval);
     }, [slides.length]);
 
+
     return (
-        <section className="relative text-white py-32 px-6 md:py-40 overflow-hidden"> {/* ✅ UPDATED: removed bg-gradient, added overflow-hidden */}
+
+        <section className={`${jost.className} relative text-white py-32 px-6 md:py-40 overflow-hidden}`}> {/* ✅ UPDATED: removed bg-gradient, added overflow-hidden */}
 
             {/* ✅ ADDED: BACKGROUND SLIDER */}
             <div className="absolute inset-0 z-0">
@@ -87,12 +99,13 @@ export default function Hero() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 backdrop-blur-md bg-blue-500 border border-white/30 text-white px-8 py-3 rounded-lg hover:bg-blue-400 transition flex items-center gap-2" // ✅ UPDATED: flex + gap
+                        onClick={() => setModalOpen(true)}  // ✅ ADDED
+                        className="mt-6 backdrop-blur-md bg-blue-500 border border-white/30 text-white px-8 py-3 rounded-lg hover:bg-blue-400 transition flex items-center gap-2"
                     >
+                        <span className={` ${cairo.className} text-s transition`}>
+                            GET YOUR WYVERN LINE TODAY
+                        </span>
 
-                        <span className={`${cairo.className}  text-lg  transition`}>GET YOUR WYVERN LINE</span>
-
-                        {/* ✅ ADDED: Padlock Icon */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
@@ -123,6 +136,9 @@ export default function Hero() {
                 </motion.div>
 
             </div>
+
+            <WyvernFormModal open={modalOpen} setOpen={setModalOpen} />
         </section>
+
     );
 }

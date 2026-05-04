@@ -1,6 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { Cairo } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+import { Jost } from "next/font/google";
+import { FaHome } from "react-icons/fa";
+
+
+
+
+const jost = Jost({ subsets: ["latin"] });
+
+const cairo = Cairo({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"], // optional but recommended
+});
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
+});
+
 
 export default function Recharge() {
     const [form, setForm] = useState({
@@ -28,11 +47,11 @@ export default function Recharge() {
             <div className="text-center max-w-md w-90 mt-20 mb-10">
 
                 {/* ================= HEADER ================= */}
-                <h1 className="text-5xl font-bold text-gray-900 mb-4">
+                <h1 className={`${jost.className} text-5xl font-bold text-gray-900 mb-4`}>
                     WYVERN Recharge
                 </h1>
 
-                <p className="text-lg text-gray-600 mb-8">
+                <p className={`${jost.className} text-lg text-gray-600 mb-8`}>
                     Topup your WYVERN Line today by <br />using the
                     form below.
                 </p>
@@ -44,8 +63,8 @@ export default function Recharge() {
 
                         {/* NAME */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Name:
+                            <label className={`${jost.className} block text-sm font-medium text-gray-700 mb-1`}>
+                                <strong>  Name: </strong>
                             </label>
                             <input
                                 type="text"
@@ -53,14 +72,14 @@ export default function Recharge() {
                                 value={form.name}
                                 onChange={handleChange}
                                 placeholder="Type your Name"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
+                                className={`${jost.className} w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600`}
                             />
                         </div>
 
                         {/* WYVERN NUMBER */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                WYVERN Number:
+                            <label className={`${jost.className} block text-sm font-medium text-gray-700 mb-1`}>
+                                <strong>    WYVERN Number:</strong>
                             </label>
                             <input
                                 type="text"
@@ -68,14 +87,14 @@ export default function Recharge() {
                                 value={form.wyvern}
                                 onChange={handleChange}
                                 placeholder="Type your WYVERN Line"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
+                                className={`${jost.className} w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600`}
                             />
                         </div>
 
                         {/* EMAIL */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Your Email:
+                            <label className={`${jost.className} block text-sm font-medium text-gray-700 mb-1`}>
+                                <strong>    Your Email: </strong>
                             </label>
                             <input
                                 type="email"
@@ -83,14 +102,14 @@ export default function Recharge() {
                                 value={form.email}
                                 onChange={handleChange}
                                 placeholder="Type your email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
+                                className={`${jost.className} w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600`}
                             />
                         </div>
 
                         {/* AMOUNT */}
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Amount
+                            <label className={`${jost.className} block text-sm font-medium text-gray-700 mb-1`}>
+                                <strong>   Amount </strong>
                             </label>
                             <input
                                 type="number"
@@ -98,23 +117,24 @@ export default function Recharge() {
                                 value={form.amount}
                                 onChange={handleChange}
                                 placeholder="Recharge Amount"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600"
+                                className={`${jost.className} w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600`}
                             />
                         </div>
 
                         {/* BUTTONS */}
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                            className={`${jost.className} w-full bg-gradient-to-r from-[#0F2A74] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2`}
                         >
-                            Recharge Now
+                            <span>Recharge Now </span>
                         </button>
 
                         <button
                             type="button"
-                            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                            className={`${jost.className} w-full bg-gradient-to-r from-[#0F2A74] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2`}
                         >
-                            Go Back Home 🏠
+                            <span> Go Back Home</span>
+                            <FaHome className="text-white" />
                         </button>
 
                     </form>

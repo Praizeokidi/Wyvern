@@ -1,6 +1,9 @@
 'use client';
+import { useEffect } from "react";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { Jost, Cairo } from "next/font/google";
+
+
 
 const jost = Jost({ subsets: ["latin"] });
 const cairo = Cairo({
@@ -9,6 +12,14 @@ const cairo = Cairo({
 });
 
 export default function Contact() {
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
+
     return (
         <section className="bg-slate-950 text-white py-16 px-6">
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
@@ -53,14 +64,13 @@ export default function Contact() {
 
                     {/* ================= REAL BOOKING CALENDAR ================= */}
                     <div className="w-full rounded-lg overflow-hidden border border-gray-700">
-                        <iframe
-                            src="https://cal.com/praize-okidi/book-a-demo-today"
-                            width="100%"
-                            height="600"
-                            frameBorder="0"
-                            title="Book a time"
-                            className="w-full"
-                        />
+
+                        <div
+                            className="calendly-inline-widget w-full h-[650px]"
+                            data-url="https://calendly.com/praizeokidi/30min"
+                        ></div>
+
+
                     </div>
 
                 </div>

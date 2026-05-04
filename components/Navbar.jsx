@@ -1,14 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Jost } from "next/font/google";
+import WyvernFormModal from "@/components/get-your-line";
+
+
+
+
+
 
 const jost = Jost({ subsets: ["latin"] });
 
+
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
+
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
 
     const links = [
         { name: "Home", path: "/" },
@@ -26,14 +46,25 @@ export default function Navbar() {
     return (
         <nav className={`${jost.className} fixed top-0 w-full z-50`}>
             {/* Glass Background */}
-            <div className="backdrop-blur-xl bg-white/10 border-b border-white/10 shadow-lg">
+            <div
+                className={`transition-all duration-300 border-b 
+    ${scrolled
+                        ? "bg-white text-black shadow-md backdrop-blur-0"
+                        : "bg-white/5 backdrop-blur-md text-white border-white/10"
+                    }`}
+            >
                 <div className="flex justify-between items-center px-6 py-4">
 
                     {/* Logo */}
                     <motion.h1
-                        className="text-2xl font-bold text-white tracking-wider"
+                        className={`cursor-pointer transition text-2xl font-bold tracking-wider ${scrolled
+                            ? "text-gray-800 hover:text-blue-600"
+                            : "text-white/80 hover:text-white"
+                            }`}
                         whileHover={{ scale: 1.05 }}
-                    >
+                    > <motion.span
+
+                    ></motion.span>
                         WYVERN
                     </motion.h1>
 
@@ -48,8 +79,10 @@ export default function Navbar() {
                                     onMouseLeave={() => setOpenDropdown(false)}
                                 >
                                     <motion.span
-                                        className="cursor-pointer text-white/80 hover:text-white transition"
-                                        whileHover={{ y: -2 }}
+                                        className={`cursor-pointer transition ${scrolled
+                                            ? "text-gray-800 hover:text-blue-600"
+                                            : "text-white/80 hover:text-white"
+                                            }`}
                                     >
                                         {link.name} ▾
                                     </motion.span>
@@ -62,7 +95,11 @@ export default function Navbar() {
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 20, scale: 0.95 }}
                                                 transition={{ duration: 0.2 }}
-                                                className="absolute top-10 left-0 w-48 rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl p-2"
+                                                className={`absolute top-10 left-0 w-48 rounded-xl p-2 transition-all duration-300 border
+    ${scrolled
+                                                        ? "bg-white text-gray-800 shadow-lg border-gray-200 backdrop-blur-0"
+                                                        : "bg-white/5 text-white shadow-2xl border-white/10 backdrop-blur-md"
+                                                    }`}
                                             >
                                                 {rechargeOptions.map((item) => (
                                                     <motion.li
@@ -71,8 +108,11 @@ export default function Navbar() {
                                                     >
                                                         <Link
                                                             href={item.path}
-                                                            className="block px-4 py-2 rounded-lg hover:bg-white/10 transition"
-                                                        >
+                                                            className={`block px-4 py-2 rounded-lg transition
+    ${scrolled
+                                                                    ? "hover:bg-gray-100 text-gray-800"
+                                                                    : "hover:bg-white/10 text-white"
+                                                                }`}     >
                                                             {item.name}
                                                         </Link>
                                                     </motion.li>
@@ -89,7 +129,10 @@ export default function Navbar() {
                                 >
                                     <Link
                                         href={link.path}
-                                        className="text-white/80 group-hover:text-white transition"
+                                        className={`transition ${scrolled
+                                            ? "text-gray-800 hover:text-blue-600"
+                                            : "text-white/80 hover:text-white"
+                                            }`}
                                     >
                                         {link.name}
                                     </Link>
@@ -106,7 +149,8 @@ export default function Navbar() {
 
                     {/* CTA Button */}
                     <motion.button
-                        className="hidden md:block px-5 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-blue-400 text-white shadow-lg relative overflow-hidden"
+                        onClick={() => setModalOpen(true)}
+                        className="hidden md:block px-5 py-2 rounded-xl bg-gradient-to-r from-blue-900 to-blue-500 text-white shadow-lg relative overflow-hidden"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -116,15 +160,19 @@ export default function Navbar() {
                         <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition" />
                     </motion.button>
 
+
+
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden text-white text-xl"
+                        className={`md:hidden text-2xl transition-all duration-300 p-2 rounded-md ${scrolled ? "text-gray-800 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                            }`}
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? "✖" : "☰"}
                     </button>
                 </div>
             </div>
+
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -173,19 +221,28 @@ export default function Navbar() {
                                     key={link.name}
                                     href={link.path}
                                     onClick={() => setIsOpen(false)}
-                                    className="block text-white text-lg"
+                                    className={`block text-lg ${scrolled ? "text-gray-800" : "text-white"
+                                        }`}
                                 >
                                     {link.name}
                                 </Link>
                             )
-                        )}
-
-                        <button className="w-full bg-blue-500 py-3 rounded-xl mt-4">
-                            Get Your Line
-                        </button>
-                    </motion.div>
+                        )
+                        }
+                        {/* 
+                        <button
+                            onClick={() => {
+                                setModalOpen(true);
+                                setIsOpen(false);
+                            }}
+                            className="w-full bg-blue-500 py-3 rounded-xl mt-4"
+                        >
+                            Get Your WYVERN Line
+                        </button> */}
+                    </motion.div >
                 )}
-            </AnimatePresence>
-        </nav>
+            </AnimatePresence >
+            <WyvernFormModal open={modalOpen} setOpen={setModalOpen} />
+        </nav >
     );
 }

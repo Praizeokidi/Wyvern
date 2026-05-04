@@ -1,9 +1,16 @@
+"use client";
+import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
-import { Fraunces } from "next/font/google";
-import { Poppins } from "next/font/google";
+import { Fraunces, Poppins } from "next/font/google";
+import { Jost } from "next/font/google";
+import Image from "next/image"; // ✅ ADD THIS
 
+
+
+const jost = Jost({ subsets: ["latin"] });
 
 const fraunces = Fraunces({
     subsets: ["latin"],
@@ -15,91 +22,169 @@ const poppins = Poppins({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+// animation variants
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { staggerChildren: 0.15 },
+    },
+};
 
-
-
+const item = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0 },
+};
 
 export default function Footer() {
     return (
-        <footer className="bg-blue-900 text-white py-10 px-6">
-            <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+        <footer className="relative overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-slate-950 text-white py-6 px-0">
 
-                {/* About */}
-                <div>
-                    <h3 className={`${fraunces.className} font-bold text-xl mb-3`}>WYVERN</h3> {/* replace with logo when available */}
-                    <p className={`${poppins.className} text-sm text-blue-200`}>
+            {/* ================= 3D GLOW ORBS ================= */}
+            <div className="absolute -top-20 left-10 w-72 h-72 bg-blue-500 blur-3xl opacity-20 rounded-full animate-pulse"></div>
+            <div className="absolute bottom-0 right-10 w-72 h-72 bg-cyan-400 blur-3xl opacity-10 rounded-full"></div>
+
+            <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="relative w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-10"
+            >
+
+                {/* ================= LOGO ================= */}
+                <motion.div variants={item} className="flex items-start justify-start -ml-4">
+                    <Image
+                        src="/logoz.png" // ✅ place your logo in /public
+                        alt="WYVERN Logo"
+                        width={150}
+                        height={150}
+                        className="object-contain"
+                    />
+
+                </motion.div>
+
+
+                {/* ================= ABOUT ================= */}
+                <motion.div variants={item} className="flex flex-col -ml-15 justify-start">
+                    <p className={`${poppins.className} mt-6 text-sm text-blue-200`}>
                         Licensed telecom company delivering voice, SMS, and video communication solutions.
                     </p>
 
-                    {/* Social Icons */}
+                    {/* SOCIAL */}
                     <div className="flex gap-4 mt-4">
-                        <a href="#" className="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition">
-                            <FaFacebookF size={14} />
+                        {[FaFacebookF, FaTwitter, FaInstagram].map((Icon, i) => (
+                            <motion.a
+                                key={i}
+                                whileHover={{ scale: 1.2, rotate: 5 }}
+                                className="bg-blue-800/60 backdrop-blur p-2 rounded-full hover:bg-blue-600 transition"
+                            >
+                                <Icon size={14} />
+                            </motion.a>
+                        ))}
+                    </div>
+                </motion.div>
+
+
+                {/* ================= LINKS ================= */}
+                <motion.div
+                    variants={item}>
+                    <h3 className={`${jost.className} text-xl font-bold mb-4`}>
+                        Quick Links
+                    </h3>
+
+                    <ul className={`${poppins.className} space-y-3 text-sm`}>
+                        {[
+                            { name: "Home", href: "/" },
+                            { name: "Services", href: "/services" },
+                            { name: "Downloads", href: "/downloads" },
+                            { name: "Contact Us", href: "/contact" },
+                            { name: "FAQs", href: "/faq" }
+                        ].map((link, i) => (
+                            <motion.li
+                                key={i}
+                                whileHover={{ x: 5 }}
+                                transition={{ type: "spring", stiffness: 200 }}
+                            >
+                                <Link
+                                    href={link.href}
+                                    className="flex items-center gap-2 hover:text-blue-300 transition"
+                                >
+                                    <span className="text-blue-400">➤</span>
+                                    {link.name}
+                                </Link>
+                            </motion.li>
+                        ))}
+                    </ul>
+                </motion.div>
+
+                {/* ================= SUPPORT ================= */}
+                <motion.div
+                    variants={item}>
+                    <h3 className={`${jost.className} text-xl font-bold mb-4`}>
+                        Support
+                    </h3>
+
+                    <ul className={`${poppins.className} space-y-3 text-sm`}>
+                        {[
+                            { name: "Privacy Policy", href: "/privacy" },
+                            { name: "About Us", href: "/about" },
+                            { name: "Insights", href: "/faq" },
+                            { name: "Collaborations", href: "/contact" },
+                            { name: "Terms of Service", href: "/terms" },
+                        ].map((link, i) => (
+                            <motion.li
+                                key={i}
+                                whileHover={{ x: 5 }}
+                                transition={{ type: "spring", stiffness: 200 }}
+                            >
+                                <Link
+                                    href={link.href}
+                                    className="flex items-center gap-2 hover:text-blue-300 transition"
+                                >
+                                    <span className="text-blue-400">➤</span>
+                                    {link.name}
+                                </Link>
+                            </motion.li>
+                        ))}
+                    </ul>
+                </motion.div>
+
+                {/* ================= CONTACT ================= */}
+                <motion.div variants={item}>
+                    <h3 className={`${jost.className} text-xl font-bold mb-4`}>
+                        Contact Us
+                    </h3>
+
+                    <div className={`${poppins.className} space-y-3 text-sm text-blue-200`}>
+
+                        <a
+                            href="mailto:wyvernglobalservice@gmail.com"
+                            className="flex items-center gap-2 hover:text-blue-400 transition"
+                        > <MdEmail className="text-blue-400" />
+                            wyvernglobalservice@gmail.com
+
                         </a>
-                        <a href="#" className="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition">
-                            <FaTwitter size={14} />
-                        </a>
-                        <a href="#" className="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition">
-                            <FaInstagram size={14} />
+
+                        <a
+                            href="tel:+2348055512395"
+                            className="flex items-center gap-2 hover:text-blue-400 transition"
+                        >  <MdPhone className="text-blue-400" />
+                            +2348055512395
                         </a>
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Quick Links */}
-                <div>
-                    <h3 className={`${fraunces.className} font-bold mb-3`}>Quick Links</h3>
-                    <ul className={`${poppins.className} space-y-2 text-sm`}>
+            </motion.div>
 
-                        <li>
-                            <Link href="/" className="flex items-center gap-2 hover:text-blue-400 transition">
-                                <span>▶</span> Home
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/services" className="flex items-center gap-2 hover:text-blue-400 transition">
-                                <span>▶</span> Services
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/downloads" className="flex items-center gap-2 hover:text-blue-400 transition">
-                                <span>▶</span> Downloads
-                            </Link>
-                        </li>
-
-
-
-                        <li>
-                            <Link href="/contact" className="flex items-center gap-2 hover:text-blue-400 transition">
-                                <span>▶</span> Contact Us
-                            </Link>
-                        </li>
-
-                    </ul>
-                </div>
-
-                {/* Contact */}
-                <div>
-                    <h3 className={`${fraunces.className} font-bold mb-3`}>Contact Us</h3>
-
-
-                    <p className={`${poppins.className} text-sm text-blue-200 flex items-center gap-2`}>
-                        <MdEmail className="text-blue-400" size={16} />
-                        <span>wyvernglobalservice@gmail.com</span>
-
-                    </p>
-                    <p className={`${poppins.className} text-sm text-blue-200 flex items-center gap-2`}>
-                        <MdPhone className="text-blue-400" size={16} />
-                        <span> +234 805 551 2395 </span>
-                    </p>
-                </div>
-
-            </div>
-
-            <div className={`${poppins.className} text-center mt-6 text-sm text-blue-300`}>
+            {/* ================= COPYRIGHT ================= */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className={`${jost.className} text-center mt-10 text-sm text-white`}
+            >
                 © {new Date().getFullYear()} WYVERN. All rights reserved.
-            </div>
-        </footer>
+            </motion.div>
+        </footer >
     );
 }

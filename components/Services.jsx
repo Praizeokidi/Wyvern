@@ -47,24 +47,7 @@ export default function Services() {
             icon: Server,
             link: "/services/cloud-pbx",
         },
-        {
-            title: "SIP Trunking",
-            desc: "Our system allows you to make and receive phone calls over the internet...",
-            icon: Headphones,
-            link: "/services/sip-trunking",
-        },
-        {
-            title: "Contact Center Solution",
-            desc: "Elevate your customer support and engagement...",
-            icon: Users,
-            link: "/services/contact-center",
-        },
-        {
-            title: "Closed User Group",
-            desc: "Connect freely within your group with WYVERN CUG line...",
-            icon: Globe,
-            link: "/services/cug",
-        },
+
     ];
 
     const containerVariants = {
@@ -149,6 +132,23 @@ export default function Services() {
                     })}
                 </motion.div>
 
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="flex justify-center mt-10"
+                >
+                    <Link href="/services">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-1000 to-blue-900 border-white/30 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                        > <span className="absolute inset-0 bg-white/20 opacity-0 hover:opacity-20 blur-xl transition" />
+                            View More Services
+                        </motion.button>
+                    </Link>
+                </motion.div>
             </section>
         </div>
     );

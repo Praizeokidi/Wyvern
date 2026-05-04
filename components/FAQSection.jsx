@@ -26,7 +26,7 @@ export function FAQSection() {
 
     return (
         <section className="bg-gray-100 py-16 px-6">
-            <h2 className={`${jost.className} text-center text-2xl text-blue-700 font-bold mb-8`}>
+            <h2 className={`${jost.className} text-center text-2xl text-blue-900 font-bold mb-8`}>
                 Frequently Asked Questions
             </h2>
 

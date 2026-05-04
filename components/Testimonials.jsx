@@ -4,13 +4,30 @@ import Image from "next/image";
 import { useState } from "react";
 import { Rubik } from "next/font/google";
 import { Kaushan_Script } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+import { Jost } from "next/font/google";
+import { Cairo } from "next/font/google";
+
+
 
 const rubik = Rubik({ subsets: ["latin"] });
+
 const kaushan = Kaushan_Script({
     subsets: ["latin"],
     weight: ["400"],
 });
 
+const cairo = Cairo({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"], // optional but recommended
+});
+
+const jost = Jost({ subsets: ["latin"] });
+
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 const testimonials = [
     {
@@ -125,22 +142,22 @@ export default function Testimonial() {
                     Testimonials ❤️
                 </p>
 
-                <h2 className={`${rubik.className} text-3xl font-bold mb-10`}>
+                <h2 className={`${jost.className} text-3xl text-gray-900 font-bold mb-10`}>
                     Happy Clients Say
                 </h2>
 
                 {/* ================= TESTIMONIAL CARD ================= */}
                 {index !== null && (
                     <div className="bg-white rounded-xl shadow-xl p-6 transition-all duration-500 animate-fadeIn">
-                        <p className="text-gray-600 italic mb-4">
+                        <p className={`${cairo.className} text-gray-700 italic mb-4`}>
                             &quot;{testimonials[index].text}&quot;
                         </p>
 
-                        <h4 className="font-semibold">
+                        <h4 className={`${jost.className} font-semibold text-gray-700`}>
                             {testimonials[index].name}
                         </h4>
 
-                        <p className="text-sm text-gray-500">
+                        <p className={`${cairo.className} text-sm text-gray-600`}>
                             {testimonials[index].role}
                         </p>
                     </div>
