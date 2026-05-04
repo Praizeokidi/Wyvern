@@ -5,7 +5,7 @@ import { Cairo } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import { Jost } from "next/font/google";
 import { FaHome } from "react-icons/fa";
-
+import Link from "next/link";
 
 
 
@@ -49,7 +49,7 @@ export default function Balance() {
                 {/* ================= CARD ================= */}
                 <div className="bg-white rounded-xl shadow-md p-6">
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4 inline-block">
 
                         {/* INPUT */}
                         <div className="text-left">
@@ -77,16 +77,21 @@ export default function Balance() {
                             type="button"
                             className={`${jost.className} w-[280px] bg-gradient-to-r from-[#0F2A74] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2`}
                         >
-                            <span>Go Back Home</span>
-                            <FaHome className="text-white" />
-                        </button>
-
-                        <button
-                            type="button"
-                            className={`${jost.className} w-[280px] bg-gradient-to-r from-[#0F2A74] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2`}
-                        >
                             Top-Up Your WYVERN line
                         </button>
+
+                        <Link href="/">
+
+                            <button
+                                type="button"
+                                className={`${jost.className} w-[280px] bg-gradient-to-r from-[#0F2A74] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2`}
+                            >
+                                <span>Go Back Home</span>
+                                <FaHome className="text-white" />
+                            </button>
+
+
+                        </Link >
 
                     </form>
                 </div>

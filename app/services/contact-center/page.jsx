@@ -5,7 +5,9 @@ import Image from "next/image";
 import Testimonial from "@/components/Testimonials";
 import BookSession from "@/components/Bas";
 import { motion } from "framer-motion";
-// import { FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaTwitter } from "react-icons/fa";
+
+
 
 export default function ContactCenterPage() {
     return (
@@ -17,13 +19,13 @@ export default function ContactCenterPage() {
             <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 mt-16 sm:mt-20">
 
                 {/* META */}
-                {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 gap-3">
 
-                    <div className="flex flex-wrap gap-3">
+                    {/* <div className="flex flex-wrap gap-3">
                         <span>👤 Boss</span>
                         <span>📅 November 24, 2023</span>
                         <span>⏰ 8:00 am</span>
-                    </div>
+                    </div> */}
 
                     <div className="flex gap-2 flex-wrap">
                         <button className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1">
@@ -33,7 +35,7 @@ export default function ContactCenterPage() {
                             <FaTwitter /> Twitter
                         </button>
                     </div>
-                </div> */}
+                </div>
 
                 {/* TITLE */}
                 <h1 className="text-2xl sm:text-4xl font-bold text-center mt-8 sm:mt-12 mb-8">

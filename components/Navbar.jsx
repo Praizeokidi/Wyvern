@@ -56,17 +56,19 @@ export default function Navbar() {
                 <div className="flex justify-between items-center px-6 py-4">
 
                     {/* Logo */}
-                    <motion.h1
-                        className={`cursor-pointer transition text-2xl font-bold tracking-wider ${scrolled
-                            ? "text-gray-800 hover:text-blue-600"
-                            : "text-white/80 hover:text-white"
-                            }`}
-                        whileHover={{ scale: 1.05 }}
-                    > <motion.span
+                    <Link href="/" className="inline-block">
+                        <motion.h1
+                            className={`cursor-pointer transition text-2xl font-bold tracking-wider ${scrolled
+                                ? "text-gray-800 hover:text-blue-600"
+                                : "text-white/80 hover:text-white"
+                                }`}
+                            whileHover={{ scale: 1.05 }}
+                        > <motion.span
 
-                    ></motion.span>
-                        WYVERN
-                    </motion.h1>
+                        >WYVERN</motion.span>
+
+                        </motion.h1>
+                    </Link>
 
                     {/* Desktop Links */}
                     <ul className="hidden md:flex gap-10 items-center text-sm relative">

@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { Fraunces, Poppins } from "next/font/google";
@@ -38,8 +39,7 @@ const item = {
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-gradient-to-b from-blue-950 via-blue-900 to-slate-950 text-white py-6 px-0">
-
+        <footer className="relative overflow-visible bg-gradient-to-b from-blue-950 via-blue-900 to-slate-950 text-white py-6 px-4 sm:px-6 lg:px-8">
             {/* ================= 3D GLOW ORBS ================= */}
             <div className="absolute -top-20 left-10 w-72 h-72 bg-blue-500 blur-3xl opacity-20 rounded-full animate-pulse"></div>
             <div className="absolute bottom-0 right-10 w-72 h-72 bg-cyan-400 blur-3xl opacity-10 rounded-full"></div>
@@ -53,7 +53,7 @@ export default function Footer() {
             >
 
                 {/* ================= LOGO ================= */}
-                <motion.div variants={item} className="flex items-start justify-start -ml-4">
+                <motion.div variants={item} className="flex items-start justify-start ">
                     <Image
                         src="/logoz.png" // ✅ place your logo in /public
                         alt="WYVERN Logo"
@@ -66,8 +66,8 @@ export default function Footer() {
 
 
                 {/* ================= ABOUT ================= */}
-                <motion.div variants={item} className="flex flex-col -ml-15 justify-start">
-                    <p className={`${poppins.className} mt-6 text-sm text-blue-200`}>
+                <motion.div variants={item} className="flex flex-col justify-start">
+                    <p className={`${poppins.className} mt-6 text-sm text-blue-200 leading-relaxed`}>
                         Licensed telecom company delivering voice, SMS, and video communication solutions.
                     </p>
 
@@ -110,7 +110,9 @@ export default function Footer() {
                                     href={link.href}
                                     className="flex items-center gap-2 hover:text-blue-300 transition"
                                 >
-                                    <span className="text-blue-400">➤</span>
+                                    <span className="text-blue-400 group-hover:text-white transition duration-300">
+                                        <FiArrowUpRight className="text-sm" />
+                                    </span>
                                     {link.name}
                                 </Link>
                             </motion.li>
@@ -142,8 +144,10 @@ export default function Footer() {
                                     href={link.href}
                                     className="flex items-center gap-2 hover:text-blue-300 transition"
                                 >
-                                    <span className="text-blue-400">➤</span>
-                                    {link.name}
+                                    <span className="text-blue-400 group-hover:text-white transition duration-300">
+                                        <FiArrowUpRight className="text-sm" />
+                                    </span>
+                                        {link.name}
                                 </Link>
                             </motion.li>
                         ))}
@@ -161,7 +165,7 @@ export default function Footer() {
                         <a
                             href="mailto:wyvernglobalservice@gmail.com"
                             className="flex items-center gap-2 hover:text-blue-400 transition"
-                        > <MdEmail className="text-blue-400" />
+                        > <MdEmail className="text-blue-400 " />
                             wyvernglobalservice@gmail.com
 
                         </a>

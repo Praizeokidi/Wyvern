@@ -17,11 +17,11 @@ export default function CloudPbx() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 gap-3">
 
                     {/* LEFT META */}
-                    <div className="flex flex-wrap gap-3">
+                    {/* <div className="flex flex-wrap gap-3">
                         <span>👤 Boss</span>
                         <span>📅 November 24, 2023</span>
                         <span>⏰ 8:00 am</span>
-                    </div>
+                    </div> */}
 
                     {/* SOCIAL BUTTONS */}
                     <div className="flex gap-2 flex-wrap">
