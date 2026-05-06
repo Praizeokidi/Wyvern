@@ -191,7 +191,7 @@ export default function Navbar() {
                                 <div key={link.name}>
                                     <button
                                         onClick={() => setOpenDropdown(!openDropdown)}
-                                        className="text-white text-lg"
+                                        className="text-white text-lg hover:text-cyan-300 transition"
                                     >
                                         {link.name} ▾
                                     </button>
@@ -209,7 +209,7 @@ export default function Navbar() {
                                                         key={item.name}
                                                         href={item.path}
                                                         onClick={() => setIsOpen(false)}
-                                                        className="block text-white/80"
+                                                        className="block text-white/90 hover:text-white transition"
                                                     >
                                                         {item.name}
                                                     </Link>
@@ -223,8 +223,7 @@ export default function Navbar() {
                                     key={link.name}
                                     href={link.path}
                                     onClick={() => setIsOpen(false)}
-                                    className={`block text-lg ${scrolled ? "text-gray-800" : "text-white"
-                                        }`}
+                                    className="block text-lg text-white"
                                 >
                                     {link.name}
                                 </Link>

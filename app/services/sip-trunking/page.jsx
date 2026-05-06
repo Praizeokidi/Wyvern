@@ -4,38 +4,26 @@ import Footer from "@/components/Footer";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import Testimonial from "@/components/Testimonials";
 import BookSession from "@/components/Bas";
+import { Jost } from "next/font/google";
 
+
+
+const jost = Jost({
+    subsets: ["latin"],
+});
 export default function SipTrunkingPage() {
     return (
         <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
             <Navbar />
 
+            {/* HERO */}
+            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-10 px-6 text-center relative ">
+                <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-25`}> SIP Trunking</h1>
+
+            </section>
+
             {/* ================= HEADER ================= */}
-            <section className="max-w-4xl mx-auto px-4 sm:px-6 py-10 mt-16 sm:mt-20">
-
-                {/* Meta */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 gap-3">
-
-                    {/* <div className="flex flex-wrap gap-3">
-                        <span>👤 Boss</span>
-                        <span>📅 November 24, 2023</span>
-                        <span>⏰ 8:00 am</span>
-                    </div> */}
-
-                    <div className="flex flex-wrap gap-2">
-                        <button className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                            <FaFacebookF /> Facebook
-                        </button>
-                        <button className="bg-blue-400 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                            <FaTwitter /> Twitter
-                        </button>
-                    </div>
-                </div>
-
-                {/* Title */}
-                <h1 className="text-2xl sm:text-3xl font-bold text-center mt-6 mb-6">
-                    SIP Trunking
-                </h1>
+            <section className="max-w-5xl mx-auto px-4 sm:px-6 py-10 mt-16 sm:mt-20">
 
                 {/* IMAGE */}
                 <div className="bg-white rounded-2xl shadow p-4 sm:p-6 flex justify-center">
@@ -50,7 +38,7 @@ export default function SipTrunkingPage() {
             </section>
 
             {/* ================= CONTENT ================= */}
-            <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
+            <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
 
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4">
                     SIP Trunking

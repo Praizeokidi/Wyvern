@@ -3,116 +3,106 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import BookSession from "@/components/Bas";
 import Testimonial from "../../../components/Testimonials";
+import { Jost } from "next/font/google";
+
+
+
+const jost = Jost({
+    subsets: ["latin"],
+});
+
+
 
 export default function CloudPbx() {
     return (
         <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
             <Navbar />
 
-            {/* TOP META */}
-            <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 mt-16 sm:mt-20">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 gap-3">
 
-                    {/* LEFT META */}
-                    {/* <div className="flex flex-wrap gap-3">
-                        <span>👤 Boss</span>
-                        <span>📅 November 24, 2023</span>
-                        <span>⏰ 8:00 am</span>
-                    </div> */}
+            {/* HERO */}
+            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-10 px-6 text-center relative ">
+                <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-25`}>Cloud Hosted PBX</h1>
 
-                    {/* SOCIAL BUTTONS */}
-                    <div className="flex gap-2 flex-wrap">
-                        <button className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                            <FaFacebookF /> Facebook
-                        </button>
-                        <button className="bg-blue-400 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1">
-                            <FaTwitter /> Twitter
-                        </button>
-                    </div>
-                </div>
-
-                <h1 className="text-2xl sm:text-4xl font-bold text-center mt-6 mb-8 sm:mb-10">
-                    Cloud Hosted PBX
-                </h1>
             </section>
+
 
             {/* IMAGE CARD */}
             <section className="max-w-5xl mx-auto px-4 sm:px-6">
                 <div className="bg-white rounded-2xl shadow p-4 sm:p-6 flex justify-center">
                     <Image
-                        src="/ivr.png"
-                        alt="IVR"
-                        width={256}
-                        height={256}
-                        className="w-40 sm:w-64 h-auto object-contain"
+                        src="/pbx.jpg"
+                        alt="cloud pbx"
+                        width={1000}
+                        height={700}
+                        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl h-auto object-contain"
                     />
                 </div>
             </section>
 
             {/* CONTENT */}
-            <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-6 sm:mt-10">
+            <section className={`${jost.className} max-w-6xl mx-auto px-4 sm:px-6 mt-6 sm:mt-10`}>
 
-                <h2 className="text-xl sm:text-2xl font-bold mb-4">
+                <h2 className={`${jost.className} text-3xl font-bold mb-1`}>
                     Cloud Hosted PBX
                 </h2>
 
-                <p className="font-semibold">
-                    Revolutionize Your Business Communication with Our Cloud Hosted PBX
+                <p className={`${jost.className} font-semibold`}>
+                    Transform The Way Your Business Communicates with Our Next-Gen Cloud Hosted PBX.
                 </p>
 
-                <p className="text-gray-600 mb-6 text-sm sm:text-base leading-relaxed">
-                    In today’s fast-paced business environment, maintaining seamless communication is crucial for success...
+                <p className={`${jost.className} text-gray-600 mb-6 text-sm sm:text-base leading-relaxed`}>
+                    In a world where speed and responsiveness define success, your business can’t afford communication gaps. Our advanced Cloud Hosted PBX works like an intelligent command center routing every call to the right person, wherever they are, whether in the office, remote, or on the move. The result? Seamless connectivity, zero missed opportunities, and a more productive, agile team.
                 </p>
 
-                <h3 className="text-xl sm:text-2xl font-bold mb-4">
+                <h3 className={`${jost.className} text-xl sm:text-2xl font-bold mb-4`}>
                     Key Benefits of Our Cloud Hosted PBX
                 </h3>
 
-                <h4 className="text-base font-bold mb-2">
-                    Eliminate Server Maintenance Hassles
+                <h4 className={`${jost.className} text-base font-bold mb-1`}>
+                    Say Goodbye Server Maintenance Issues.
                 </h4>
-                <p className="text-gray-600 mb-5 text-sm leading-relaxed">
-                    Maintaining on-premises servers can be both challenging and costly...
+                <p className={`${jost.className} text-gray-600 mb-5 text-sm leading-relaxed`}>
+                    Managing on-premise servers can be complex, time-consuming, and expensive especially for businesses with limited IT support. With our Cloud PBX, you can eliminate those burdens entirely. No more maintenance, no more unexpected costs—just a streamlined, reliable communication system that lets you focus on growing your business.
                 </p>
 
-                <h4 className="text-base font-bold mb-2">
-                    Enhance Your Professional Image
+                <h4 className={`${jost.className} text-base font-bold mb-1`}>
+                    Elevate Your Brand Presence
                 </h4>
-                <p className="text-gray-600 mb-5 text-sm leading-relaxed">
-                    First impressions matter. Our Cloud Hosted PBX allows small businesses...
+                <p className={`${jost.className} text-gray-600 mb-5 text-sm leading-relaxed`}>
+                    First impressions can define your business. With our Cloud Hosted PBX, you project a polished, professional image from the very first interaction. Features like intelligent auto-attendants, personalized greetings, and smart call routing ensure every customer experience feels seamless and premium strengthening trust and elevating your brand reputation.
                 </p>
 
-                <h4 className="text-base font-bold mb-2">
-                    Remote Work Flexibility
+                <h4 className={`${jost.className} text-base font-bold mb-1`}>
+                    Work Without Boundaries
                 </h4>
                 <p className="text-gray-600 mb-5 text-sm leading-relaxed">
-                    Employees can access the phone system from anywhere with internet...
-                </p>
+                    Modern business demands flexibility, and your communication system should keep up. Our Cloud PBX empowers your team to stay connected from anywhere—whether in the office, at home, or on the move. With uninterrupted access to your phone system, collaboration becomes effortless and productivity reaches new heights. </p>
 
-                <h4 className="text-base font-bold mb-2">
-                    High Reliability and Uptime
+                <h4 className="text-base font-bold mb-1">
+                    Built for Reliability You Can Trust
                 </h4>
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                    Our Cloud PBX is hosted in secure data centers with redundancy...
+                    Downtime isn’t an option when communication drives your business. That’s why our Cloud PBX is powered by secure, enterprise-grade data centers with built-in redundancy and failover systems. The result is consistent uptime, dependable performance, and complete peace of mind—so your business never misses a beat.
                 </p>
 
-                <h3 className="text-lg sm:text-xl font-semibold mt-8 mb-3 text-blue-500">
-                    How Our Cloud Hosted PBX Transforms Communication
+                <h3 className="text-2xl font-semibold mt-8 mb-1 text-blue-500">
+                    Transform the Way Your Business Communicates
                 </h3>
 
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                    Our Cloud PBX solutions are designed for easy management...
-                </p>
+                    Our Cloud Hosted PBX is built for simplicity and control, giving you the power to manage your communication system with ease. Add or remove lines, scale extensions, and adapt instantly—without the usual costs or complexity. Whether you’re a growing startup or an established enterprise, it’s a solution designed to evolve alongside your business.
 
-                <h3 className="text-lg sm:text-2xl font-extrabold mt-8 mb-3">
-                    Learn More About Our Communication Solutions
+                    More than just a phone system, it’s a smarter way to connect—flexible, reliable, and ready to meet your changing needs. Step into a new standard of business communication built for today and prepared for tomorrow. </p>
+
+                <h3 className="text-lg sm:text-2xl font-extrabold mt-8 mb-1">
+                    Explore Smarter Communication Solutions
                 </h3>
 
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                    For more detailed information about our PBX and other solutions...
+                    Discover a full suite of advanced communication tools designed to streamline operations and boost productivity. From voice to messaging and beyond, our solutions are engineered to help your business stay connected, responsive, and ahead of the curve.
+                    Don’t settle for outdated systems—embrace a modern communication experience that drives efficiency, enhances collaboration, and positions your business for growth.
                 </p>
             </section>
 
