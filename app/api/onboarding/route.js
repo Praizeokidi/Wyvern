@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Onboarding from "@/models/Onboarding";
 import cloudinary from "@/lib/cloudinary";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req) {
     try {
@@ -104,29 +106,25 @@ export async function POST(req) {
 
         // 📧 EMAIL
         try {
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS,
-                },
-            });
-
-            await transporter.sendMail({
-                from: `WYVERN <${process.env.EMAIL_USER}>`,
-                to: process.env.EMAIL_USER,
+            await resend.emails.send({
+                from: "Wyvern <onboarding@resend.dev>",
+                to: ["praizeokidi@gmail.com"], // 👈 change to admin email
                 subject: `New WYVERN ${type.toUpperCase()} Submission`,
                 html: `
-                <h2>New ${type} onboarding submission</h2>
-                <pre>${JSON.stringify(data, null, 2)}</pre>
-            `,
+            <h2>New ${type} onboarding submission</h2>
+            <p>A new user has submitted a request.</p>
+
+            <h3>Submission Data:</h3>
+            <pre style="background:#f4f4f4;padding:12px;border-radius:8px;">
+${JSON.stringify(data, null, 2)}
+            </pre>
+        `,
             });
 
-            console.log("📧 Email sent successfully");
+            console.log("📧 Email sent via Resend");
 
         } catch (emailErr) {
-            console.error("❌ Email failed:", emailErr);
-            // ✅ DOES NOT CRASH REQUEST
+            console.error("❌ Resend failed:", emailErr);
         }
 
         return NextResponse.json({

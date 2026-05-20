@@ -4,26 +4,34 @@ const onboardingSchema = new mongoose.Schema(
     {
         type: String,
 
+        // PERSONAL
         firstName: String,
         lastName: String,
 
-        email: String,
+        personalEmail: String,
         phone: String,
 
-        address: String,
-        nin: String,
+        residentialAddress: String,
+        ninNumber: String,
 
         gender: String,
         dob: String,
         idType: String,
 
+        personalFile: String,
+
+        // BUSINESS
         businessName: String,
         cacRegNo: String,
+
+        businessEmail: String,
+        businessAddress: String,
+
         nimc: String,
         verificationType: String,
         registrationDate: String,
 
-        files: [String], // Cloudinary URLs
+        businessFile: String,
     },
     { timestamps: true }
 );

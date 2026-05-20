@@ -12,6 +12,7 @@ import { schema } from "@/lib/validation"; // your zod schema
 
 export default function WyvernFormModal({ open, setOpen }) {
     const [tab, setTab] = useState("personal");
+    const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
 
     const {
@@ -79,13 +80,54 @@ export default function WyvernFormModal({ open, setOpen }) {
     // };
 
     const onSubmit = async (data) => {
-        console.log("FORM SUBMITTED ✅", data);
+        try {
+            setLoading(true); // 🔥 START LOADING
 
-        // ✅ TEST UI ONLY (ignore backend for now)
-        setSuccessMessage("Successfully submitted. You will receive an email shortly");
+            setSuccessMessage("");
 
-        // optional: reset form to see full effect
-        reset();
+            const formData = new FormData();
+
+            // append all fields
+            Object.entries(data).forEach(([key, value]) => {
+                if (value instanceof FileList) {
+                    if (value.length > 0) {
+                        formData.append(key, value[0]);
+                    }
+                } else {
+                    formData.append(key, value);
+                }
+            });
+
+            // IMPORTANT
+            formData.append("type", tab);
+
+            const res = await fetch("/api/onboarding", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                setSuccessMessage(
+                    result.error || "Something went wrong"
+                );
+                return;
+            }
+
+            setSuccessMessage(
+                "Successfully submitted. You will receive an email shortly."
+            );
+
+            reset();
+
+        } catch (err) {
+            setSuccessMessage(
+                "Network error. Please try again."
+            );
+        } finally {
+            setLoading(false); // 🔥 ALWAYS STOP LOADING
+        }
     };
 
     const onError = (errors) => {
@@ -310,10 +352,13 @@ export default function WyvernFormModal({ open, setOpen }) {
                                             </label>
                                         </div>
 
+
                                         <button
                                             type="submit"
-                                            className="btn-primary md:col-span-2">
-                                            Submit Personal Request
+                                            disabled={loading}
+                                            className="btn-primary md:col-span-2 disabled:opacity-50"
+                                        >
+                                            {loading ? "Submitting..." : "Submit Personal Request"}
                                         </button>
                                     </motion.form>
                                 )}
@@ -457,8 +502,10 @@ export default function WyvernFormModal({ open, setOpen }) {
 
                                         <button
                                             type="submit"
-                                            className="btn-primary md:col-span-2">
-                                            Submit Business Request
+                                            disabled={loading}
+                                            className="btn-primary md:col-span-2 disabled:opacity-50"
+                                        >
+                                            {loading ? "Submitting..." : "Submit Business Request"}
                                         </button>
                                     </motion.form>
                                 )}
