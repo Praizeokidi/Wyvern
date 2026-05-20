@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -25,6 +26,55 @@ const playfair = Playfair_Display({
 
 
 export default function ContactPage() {
+
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState("");
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+        setSuccess("");
+
+        const formData = new FormData(e.target);
+
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+        };
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                setSuccess(result.error);
+                return;
+            }
+
+            setSuccess("Message sent successfully!");
+            e.target.reset();
+
+        } catch (err) {
+            setSuccess("Network error");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+
+
+
     return (
         <div className="w-full bg-slate-950">
             <Navbar />
@@ -138,30 +188,42 @@ export default function ContactPage() {
                             your advantage—strategize, innovate, and thrive.
                         </p>
 
-                        <form className="space-y-4 text-gray-400 flex flex-col h-full">
+                        {success && (
+                            <p className="text-green-600 mb-4">
+                                {success}
+                            </p>
+                        )}
+
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-4 text-gray-400 flex flex-col h-full">
                             <input
+                                name="name"
                                 type="text"
                                 placeholder="Your Name"
                                 className={`${jost.className} w-full border p-3 rounded-lg`}
                             />
+
                             <input
+                                name="email"
                                 type="email"
                                 placeholder="Email"
                                 className={`${jost.className} w-full border p-3 rounded-lg`}
                             />
+
                             <textarea
+                                name="message"
                                 placeholder="Message"
                                 rows={4}
                                 className={`${jost.className} w-full border p-3 rounded-lg`}
-                            ></textarea>
+                            />
 
                             <motion.button
-                                className={`${jost.className} bg-gradient-to-r from-blue-900 to-blue-500 mt-auto ] font-semibold text-white px-6 py-3 rounded-lg w-full`}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                type="submit"
+                                disabled={loading}
+                                className="bg-gradient-to-r from-blue-900 to-blue-500 font-semibold text-white px-6 py-3 rounded-lg w-full"
                             >
-
-                                Send Message
+                                {loading ? "Sending..." : "Send Message"}
                             </motion.button>
                         </form>
                     </div>
@@ -177,9 +239,9 @@ export default function ContactPage() {
                         />
                     </div>
                 </div>
-            </section>
+            </section >
 
             <Footer />
-        </div>
+        </div >
     );
 }
