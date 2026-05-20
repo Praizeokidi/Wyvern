@@ -196,7 +196,7 @@ export default function ContactPage() {
 
                         <form
                             onSubmit={handleSubmit}
-                            className="space-y-4 text-gray-400 flex flex-col h-full">
+                            className="space-y-4 text-gray-700 flex flex-col h-full">
                             <input
                                 name="name"
                                 type="text"
