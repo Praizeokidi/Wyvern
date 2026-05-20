@@ -80,6 +80,10 @@ export default function WyvernFormModal({ open, setOpen }) {
     // };
 
     const onSubmit = async (data) => {
+
+
+        console.log("SUBMIT PAYLOAD:", data);
+
         try {
             setLoading(true); // 🔥 START LOADING
 
@@ -107,6 +111,8 @@ export default function WyvernFormModal({ open, setOpen }) {
             });
 
             const result = await res.json();
+
+            console.log("SERVER RESPONSE:", result);
 
             if (!res.ok) {
                 setSuccessMessage(
