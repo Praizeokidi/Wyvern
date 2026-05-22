@@ -5,35 +5,28 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaWhatsapp } from "react-icons/fa";
-import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { Cairo } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
-import { Jost } from "next/font/google";
+import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Cairo, Playfair_Display, Jost } from "next/font/google";
 import { motion } from "framer-motion";
 
 const jost = Jost({ subsets: ["latin"] });
 
 const cairo = Cairo({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
+    weight: ["400", "500", "600", "700"],
 });
+
 const playfair = Playfair_Display({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-
-
 export default function ContactPage() {
-
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState("");
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setLoading(true);
         setSuccess("");
 
@@ -48,9 +41,7 @@ export default function ContactPage() {
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
 
@@ -61,187 +52,198 @@ export default function ContactPage() {
                 return;
             }
 
-            setSuccess("Message sent successfully!");
+            setSuccess("Your message has been received. Our team will respond shortly.");
             e.target.reset();
-
-        } catch (err) {
-            setSuccess("Network error");
+        } catch {
+            setSuccess("Network error. Please try again.");
         } finally {
             setLoading(false);
         }
     };
 
-
-
-
-
     return (
-        <div className="w-full bg-slate-950">
+        <div className="w-full bg-slate-950 text-white">
             <Navbar />
+
             {/* ================= HERO ================= */}
-            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-10 text-center relative">
-                <header className="text-center py-16 px-4 ">
-                    <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-10`}>Contact Us</h1>
-                    <p className={`${jost.className} text-lg opacity-90`}>
-                        Get in touch with us today, by using any of the means below.
+            <section className={`${jost.className} relative py-28 text-center overflow-hidden`}>
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
+
+                <div className="relative max-w-3xl mx-auto px-6">
+                    <h1 className={`${jost.className} text-4xl md:text-5xl font-bold`}>
+                        Contact <span className="text-blue-400">Our Team</span>
+                    </h1>
+
+                    <p className="mt-4 text-gray-400">
+                        We’re here to help you build, scale, and optimize your communication infrastructure.
                     </p>
-                    <small className={`${jost.className} text-gray-500 mt-2 text-sm opacity-100`}>Home / Contact</small>
-                </header>
+
+                    <p className="mt-2 text-sm text-gray-500">
+                        Home / Contact
+                    </p>
+                </div>
             </section>
 
             {/* ================= CONTACT INFO ================= */}
-            <section className="max-w-6xl mx-auto px-6 py-16 -mt-14 grid md:grid-cols-2 gap-10 items-center">
-                {/* Image */}
+            <section className={`${jost.className} max-w-6xl mx-auto px-6 py-16 -mt-16 grid md:grid-cols-2 gap-12 items-center`}>
+
+                {/* IMAGE */}
                 <div className="relative">
                     <Image
                         src="/contact-agent.png"
                         alt="Support agent"
                         width={600}
                         height={400}
-                        className="rounded-xl object-cover"
+                        className="rounded-2xl shadow-2xl"
                     />
-                    <div className="absolute bottom-4 left-4 bg-white text-gray-700 opacity-50 shadow-lg px-4 py-2 rounded-lg text-sm font-semibold">
+
+                    <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur border border-white/10 text-white px-4 py-2 rounded-xl text-sm">
                         1675+ Trusted Clients
                     </div>
                 </div>
 
-                {/* Info */}
+                {/* INFO */}
                 <div>
-                    <h2 className={`${jost.className} text-2xl font-bold mb-2`}>Get in Touch With Us</h2>
-                    <p className={`${jost.className} text-gray-400 mb-6`}>
-                        Connect effortlessly. Reach out and let’s start a conversation. <br />
-                        Your satisfaction is our priority.
+                    <h2 className={`${jost.className} text-2xl font-bold`}>
+                        Get in Touch With Us
+                    </h2>
+
+                    <p className="text-gray-400 mt-2 mb-8">
+                        Let’s start a conversation that drives real business growth.
                     </p>
 
-                    <div className="space-y-4 w-80">
-                        {/* Email */}
-                        <div className="flex items-center gap-4 bg-gray-100 p-4 rounded-lg">
-                            <Mail className="text-blue-600" />
+                    <div className="space-y-4">
+
+                        {/* EMAIL */}
+                        <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-xl">
+                            <Mail className="text-blue-400" />
                             <div>
-                                <p className={`${jost.className} font-semibold text-gray-900`}>Email</p>
-                                <p className={`${jost.className} text-sm text-gray-600`}>
-                                    wyvernglobalservice@gmail.com
+                                <p className="text-sm text-gray-400">Email</p>
+                                <p className="text-white text-sm">wyvernglobalservice@gmail.com</p>
+                            </div>
+                        </div>
+
+                        {/* PHONE */}
+                        <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-xl">
+                            <Phone className="text-blue-400" />
+                            <div>
+                                <p className="text-sm text-gray-400">Phone</p>
+                                <p className="text-white text-sm">+234 805 551 2395</p>
+                            </div>
+                        </div>
+
+                        {/* ADDRESS */}
+                        <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-xl">
+                            <MapPin className="text-blue-400" />
+                            <div>
+                                <p className="text-sm text-gray-400">Office</p>
+                                <p className="text-white text-sm">
+                                    17 Touggourt Street, Zone 2, Wuse, Abuja
                                 </p>
                             </div>
                         </div>
 
-                        {/* Phone */}
-                        <div className="flex items-center gap-4 bg-gray-100 p-4 rounded-lg">
-                            <Phone className="text-blue-600" />
-                            <div>
-                                <p className={`${jost.className} font-semibold text-gray-900`}>Phone</p>
-                                <p className={`${jost.className} text-sm text-gray-600`}>+234 805 551 2395</p>
+                        {/* WHATSAPP CTA */}
+                        <a
+                            href="https://wa.me/2348055512395"
+                            target="_blank"
+                            className="flex items-center gap-4 mt-6 bg-gradient-to-r from-green-500/20 to-green-600/10 border border-green-500/30 p-4 rounded-xl hover:scale-[1.02] transition"
+                        >
+                            <div className="bg-green-500 p-3 rounded-full">
+                                <FaWhatsapp className="text-white" />
                             </div>
-                        </div>
 
-                        {/* Address */}
-                        <div className="flex items-center gap-4 bg-gray-100 p-4 rounded-lg">
-                            <MapPin className="text-blue-600" />
                             <div>
-                                <p className={`${jost.className} font-semibold text-gray-900`}>Visit us</p>
-                                <p className={`${jost.className} text-sm text-gray-600`}>
-                                    17 touggourt Street , zone 2, wuse, Abuja, FCT, Nigeria
-                                </p>
+                                <p className="text-sm text-gray-400">Instant Support</p>
+                                <p className="text-white font-semibold">Chat on WhatsApp</p>
                             </div>
-                        </div>
 
-                        {/* WhatsApp CTA */}
-                        <div className={`${jost.className}  p-[1px] rounded-2xl  flex justify-center`}>
-                            <a
-                                href="https://wa.me/2348055512395"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-4 border border-emerald-600 bg-slate-950/90 backdrop-blur px-5 py-4 rounded-2xl hover:bg-slate-900 transition group"
-                            >
-                                {/* Icon */}
-                                <div className="bg-green-500 p-3 rounded-full shadow-md group-hover:scale-110 transition">
-                                    <FaWhatsapp className="text-white" size={20} />
-                                </div>
-
-                                {/* Text */}
-                                <div className="leading-tight">
-                                    <p className="text-xs text-gray-400">Chat with us</p>
-                                    <p className="text-sm font-semibold text-white">
-                                        WhatsApp Support
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
+                            <ArrowRight className="ml-auto text-green-400" />
+                        </a>
 
                     </div>
-
-
-
                 </div>
             </section>
 
             {/* ================= CONTACT FORM ================= */}
-            <section className="bg-gray-50 py-16">
-                <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-stretch">
-                    {/* Form */}
-                    <div className="flex flex-col justify-between h-full">
-                        <h2 className={`${jost.className} text-3xl font-bold mb-3 text-gray-800`}>
-                            How Can We Help Your Business To Grow?
-                        </h2>
-                        <p className={`${jost.className} text-lg text-gray-600 mb-6`}>
-                            Explore tailored solutions for business growth. Our expertise is
-                            your advantage—strategize, innovate, and thrive.
-                        </p>
+            <section className={`${jost.className}  relative py-20`}>
+                <div className="absolute inset-0 bg-slate-900" />
 
-                        {success && (
-                            <p className="text-green-600 mb-4">
-                                {success}
+                <div className="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-stretch">
+
+                    {/* ================= FORM CARD ================= */}
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-xl p-8 rounded-2xl space-y-6">
+
+                        {/* HEADER INSIDE FORM (REQUESTED CHANGE) */}
+                        <div>
+                            <h2 className={`${jost.className} text-3xl font-bold`}>
+                                Let’s Build Something{" "}
+                                <span className="text-blue-400">Powerful</span>
+                            </h2>
+
+                            <p className="text-gray-400 mt-3">
+                                Share your needs and our team will design a tailored solution for your business.
                             </p>
+                        </div>
+
+                        {/* SUCCESS MESSAGE */}
+                        {success && (
+                            <div className="bg-green-500/10 border border-green-500/30 text-green-400 p-3 rounded-xl">
+                                {success}
+                            </div>
                         )}
 
-                        <form
-                            onSubmit={handleSubmit}
-                            className="space-y-4 text-gray-900 flex flex-col h-full">
+                        {/* FORM */}
+                        <form onSubmit={handleSubmit} className="space-y-4">
+
                             <input
                                 name="name"
-                                type="text"
                                 placeholder="Your Name"
-                                className={`${jost.className} w-full border p-3 rounded-lg`}
+                                className="w-full p-3 rounded-lg bg-slate-900 border border-white/10 text-white"
                             />
 
                             <input
                                 name="email"
-                                type="email"
-                                placeholder="Email"
-                                className={`${jost.className} w-full border p-3 rounded-lg`}
+                                placeholder="Email Address"
+                                className="w-full p-3 rounded-lg bg-slate-900 border border-white/10 text-white"
                             />
 
                             <textarea
                                 name="message"
-                                placeholder="Message"
                                 rows={4}
-                                className={`${jost.className} w-full border p-3 rounded-lg`}
+                                placeholder="Your Message"
+                                className="w-full p-3 rounded-lg bg-slate-900 border border-white/10 text-white"
                             />
 
-                            <motion.button
+                            <button
                                 type="submit"
                                 disabled={loading}
-                                className="bg-gradient-to-r from-blue-900 to-blue-500 font-semibold text-white px-6 py-3 rounded-lg w-full"
+                                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 font-semibold hover:shadow-lg transition"
                             >
                                 {loading ? "Sending..." : "Send Message"}
-                            </motion.button>
+                            </button>
+
                         </form>
                     </div>
 
-                    {/* Image */}
-                    <div>
+                    {/* ================= RIGHT IMAGE (MOVED HERE) ================= */}
+                    <div className="relative flex items-stretch">
+
                         <Image
                             src="/contact-agent-2.png"
                             alt="Team working"
                             width={600}
                             height={400}
-                            className="rounded-xl object-cover"
+                            className="rounded-2xl shadow-2xl object-cover w-full h-full"
                         />
+
                     </div>
+
                 </div>
-            </section >
+            </section>
 
             <Footer />
-        </div >
+        </div>
     );
 }

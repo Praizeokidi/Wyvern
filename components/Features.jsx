@@ -1,142 +1,154 @@
-'use client';
-import Image from 'next/image';
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check } from 'lucide-react'; // ✅ ADDED: icon for feature list
+"use client";
+
+import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import { Cairo } from "next/font/google";
-
-
-
-
-
-
 
 const cairo = Cairo({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
+    weight: ["400", "500", "600", "700"],
 });
 
-
 const featureVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
 
 export default function Features() {
     const features = [
-        { title: "Client Satifaction", value: 96 }, // ✅ CHANGED naming to match sample
+        { title: "Client Satisfaction", value: 96 },
         { title: "Call Quality", value: 90 },
-        { title: "Communications", value: 98 },
-        { title: "Support", value: 99 },
+        { title: "Communication Efficiency", value: 98 },
+        { title: "Support Excellence", value: 99 },
     ];
 
     return (
-        <section className="w-full mx-auto px-6 py-16 bg-slate-950">
-            <div className="flex flex-col md:flex-row items-start gap-12">
+        <section className="relative w-full bg-gradient-to-b from-slate-950 to-slate-900 py-24 px-6 overflow-hidden">
 
+            {/* subtle glow background */}
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
 
-                {/* ================= LEFT COLUMN ================= */}
+            <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+                {/* ================= LEFT ================= */}
                 <motion.div
-                    className="md:w-1/2 flex flex-col gap-6 relative" // ✅ UPDATED spacing + relative for overlay
+                    className="relative"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={featureVariants}
                 >
 
-                    {/* ================= IMAGE ================= */}
-                    <section className="relative -mt-24 md:-mt-44 z-10 flex justify-center px-4">
-                        <div className="relative w-full max-w-[450px]">
+                    {/* IMAGE STACK (AWARD-WINNING STYLE LAYERING) */}
+                    <div className="relative flex justify-center">
+
+                        {/* BACK LAYER */}
+                        <div className="absolute -top-6 -left-6 w-[90%] h-full bg-blue-600/20 blur-2xl rounded-2xl" />
+
+                        {/* MAIN IMAGE CARD */}
+                        <div className="relative w-full max-w-[480px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+
                             <Image
                                 src="/partners.jpg"
-                                alt="Partners"
-                                width={450}
-                                height={300}
-                                className="rounded-xl shadow-lg w-full h-auto"
+                                alt="Global Partners"
+                                width={600}
+                                height={400}
+                                className="w-full h-auto object-cover"
                                 priority
                             />
-                        </div>
-                    </section>
 
-                    {/* ================= PROGRESS BARS ================= */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 px-4">
+                            {/* overlay gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent" />
+                        </div>
+
+                        {/* FLOATING STATS BADGE */}
+                        <div className="absolute -bottom-6 right-4 bg-slate-900/90 backdrop-blur border border-white/10 px-5 py-3 rounded-xl shadow-xl">
+                            <p className="text-xs text-gray-400">Global Reach</p>
+                            <p className="text-lg font-bold text-white">Trusted Worldwide</p>
+                        </div>
+                    </div>
+
+                    {/* ================= PROGRESS CARDS ================= */}
+                    <div className="grid grid-cols-2 gap-4 mt-10">
+
                         {features.map((item, index) => (
                             <div
-                                className="bg-white border rounded-lg h-20 w-full"
                                 key={index}
+                                className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur"
                             >
-                                <h3 className="text-sm text-center font-semibold text-gray-700 mt-3 mb-1">
+                                <p className="text-sm text-gray-300 mb-2">
                                     {item.title}
-                                </h3>
+                                </p>
 
-                                <div className="w-full px-3">
-                                    <div className="w-full bg-gray-300 rounded-full h-2 overflow-hidden">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: `${item.value}%` }}
-                                            transition={{ duration: 1 }}
-                                            className="bg-blue-500 h-2 rounded-full"
-                                        />
-                                    </div>
+                                <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: `${item.value}%` }}
+                                        transition={{ duration: 1 }}
+                                        className="h-2 bg-gradient-to-r from-blue-500 to-cyan-400"
+                                    />
                                 </div>
 
-                                <span className="text-xs text-gray-400 text-center block mt-1">
-                                    {item.value}%
-                                </span>
+                                <p className="text-xs text-gray-400 mt-2">
+                                    {item.value}% performance
+                                </p>
                             </div>
                         ))}
+
                     </div>
                 </motion.div>
 
-                {/* ================= RIGHT COLUMN ================= */}
+                {/* ================= RIGHT ================= */}
                 <motion.div
-                    className="md:w-1/2 flex flex-col justify-center text-gray-300"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={featureVariants}
                 >
-                    {/* ✅ UPDATED heading style */}
+
                     <h2
-                        className={`${cairo.className} font-semibold text-blue-400 mb-4 leading-[0.95] text-[clamp(2rem,4vw,4rem)]`}
+                        className={`${cairo.className} text-4xl md:text-5xl font-bold text-white leading-tight`}
                     >
-                        We Are{" "}
-                        <br className="hidden md:block" />
-                        Building a{" "}
-                        <br className="hidden md:block" />
-                        Customer
-                        <br className="hidden md:block" />
-                        Base!
+                        Building a
+                        <span className="text-blue-400"> World-Class</span>
+                        <br />
+                        Customer Experience System
                     </h2>
 
-                    {/* ✅ UPDATED paragraph */}
-                    <p className={`${cairo.className} mb-6 text-gray-400`}>
-                        We’re not just serving customers; we’re building  a community.
-                        <br className="hidden md:block" />
-                        Join us on a journey of excellence, where every interaction
-                        strengthens
-                        <br className="hidden md:block" /> your growing customer base.
+                    <p className="mt-6 text-gray-400 text-lg leading-relaxed">
+                        We are redefining service excellence by building systems that
+                        scale globally, empower users, and deliver consistent value
+                        across every interaction.
                     </p>
 
-                    {/* ================= FEATURE LIST ================= */}
-                    <ul className={`${cairo.className} space-y-4`}>
-                        {/* ✅ REPLACED bullet list with icon list */}
+                    {/* FEATURE LIST */}
+                    <ul className={`${cairo.className} mt-8 space-y-4 text-gray-300`}>
+
                         <li className="flex items-center gap-3">
                             <Check className="text-green-400 w-5 h-5" />
-                            <span>Fast and Safe</span>
+                            <span>Enterprise-grade reliability & uptime</span>
                         </li>
 
                         <li className="flex items-center gap-3">
                             <Check className="text-green-400 w-5 h-5" />
-                            <span>Efficient</span>
+                            <span>AI-assisted customer engagement</span>
                         </li>
 
                         <li className="flex items-center gap-3">
                             <Check className="text-green-400 w-5 h-5" />
-                            <span>Customer Centricity</span>
+                            <span>Secure, scalable cloud infrastructure</span>
+                        </li>
+
+                        <li className="flex items-center gap-3">
+                            <Check className="text-green-400 w-5 h-5" />
+                            <span>24/7 global support operations</span>
                         </li>
                     </ul>
+
                 </motion.div>
+
             </div>
         </section>
     );

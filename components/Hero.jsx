@@ -1,71 +1,39 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react"; // ✅ ADDED
+import { useEffect, useState } from "react";
 import { Jost } from "next/font/google";
 import Image from "next/image";
 import { Maven_Pro } from "next/font/google";
 import { Cairo } from "next/font/google";
 import WyvernFormModal from "@/components/get-your-line";
 
-
-const cairo = Cairo({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
-});
-
-const mavenPro = Maven_Pro({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional: include weights you need
-});
-
-
-
+const cairo = Cairo({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const mavenPro = Maven_Pro({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const jost = Jost({ subsets: ["latin"] });
 
-
-
-
 export default function Hero() {
+    const [modalOpen, setModalOpen] = useState(false);
 
-    const [modalOpen, setModalOpen] = useState(false)
-
-    // ✅ ADDED: slider images
-    const slides = [
-        "/hero1.jpg",
-        "/hero2.jpg",
-        "/hero3.jpg",
-        "/hero4.jpg",
-    ];
-
-
-
-    // ✅ ADDED: slider state
+    const slides = ["/hero1.jpg", "/hero2.jpg", "/hero3.jpg", "/hero4.jpg"];
     const [index, setIndex] = useState(0);
 
-
-
-
-    // ✅ ADDED: auto slideshow (5s like Elementor)
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndex((prev) => (prev + 1) % slides.length);
-        }, 5000);
+            setIndex((prev) => (prev + 1) % 4); // ✅ hardcoded length
+        }, 6000);
 
         return () => clearInterval(interval);
-    }, [slides.length]);
-
+    }, []);
 
     return (
+        <section className={`${jost.className} relative text-white py-36 px-6 md:py-44 overflow-hidden`}>
 
-        <section className={`${jost.className} relative text-white py-32 px-6 md:py-40 overflow-hidden}`}> {/* ✅ UPDATED: removed bg-gradient, added overflow-hidden */}
-
-            {/* ✅ ADDED: BACKGROUND SLIDER */}
+            {/* BACKGROUND SLIDES */}
             <div className="absolute inset-0 z-0">
                 {slides.map((img, i) => (
                     <div
                         key={i}
-                        className={`absolute inset-0 transition-opacity duration-700 ${i === index ? "opacity-100" : "opacity-0"
-                            }`}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
                         style={{
                             backgroundImage: `url(${img})`,
                             backgroundSize: "cover",
@@ -75,70 +43,76 @@ export default function Hero() {
                 ))}
             </div>
 
-            {/* ✅ ADDED: DARK OVERLAY (better than gradient) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40 z-10" />
+            {/* DARK + PREMIUM LAYER */}
+            <div className="absolute inset-0 bg-black/70 z-10" />
 
-            <div className="relative z-20 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            {/* SOFT RADIAL GLOW (premium feel) */}
+            <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.25),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(29,78,216,0.25),transparent_45%)]" />
 
-                {/* Text */}
+            {/* FLOATING BLUR ORBS */}
+            <div className="absolute w-72 h-72 bg-blue-500/20 rounded-full blur-3xl top-20 left-10 animate-pulse" />
+            <div className="absolute w-72 h-72 bg-indigo-500/20 rounded-full blur-3xl bottom-10 right-10 animate-pulse" />
+
+            {/* CONTENT */}
+            <div className="relative z-20 max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+
+                {/* TEXT */}
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-center md:text-left" // ✅ UPDATED: better alignment (center mobile, left desktop)
+                    className="text-center md:text-left"
                 >
-                    <h1 className={`${mavenPro.className} text-4xl md:text-5xl font-semibold leading-tight`}> {/* ✅ UPDATED: font-bold → font-semibold (more premium) */}
-                        Wyvern Africa Limited
-                    </h1>
-
-                    <p className={`${cairo.className} mt-4 text-lg text-gray-200 max-w-lg mx-auto md:mx-0`}> {/* ✅ UPDATED: better readability + alignment */}
-                        Connecting Nigerian businesses with reliable SIP trunks, direct numbers, and advanced contact center solutions.
+                    <p className="text-blue-400 tracking-widest uppercase text-xs mb-3">
+                        Telecom Infrastructure • Cloud Voice • SIP Solutions
                     </p>
 
-                    {/* ✅ UPDATED: PREMIUM BUTTON */}
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setModalOpen(true)}  // ✅ ADDED
-                        className="mt-6 backdrop-blur-md bg-blue-500 border border-white/30 text-white px-8 py-3 rounded-lg hover:bg-blue-400 transition flex items-center gap-2"
-                    >
-                        <span className={` ${cairo.className} text-s transition`}>
-                            GET YOUR WYVERN LINE TODAY
-                        </span>
+                    <h1 className={`${mavenPro.className} text-4xl md:text-6xl font-semibold leading-tight`}>
+                        Global Voice Infrastructure for Modern African Businesses
+                    </h1>
 
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="w-5 h-5"
-                        >
-                            <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-8a2 2 0 00-2-2zm-6 0V7a2 2 0 114 0v2h-4z" />
-                        </svg>
+                    <p className={`${cairo.className} mt-5 text-lg text-gray-300 max-w-lg`}>
+                        Wyvern Africa delivers enterprise-grade SIP trunks, virtual numbers, and communication systems built for scale, reliability, and global connectivity.
+                    </p>
+
+                    {/* CTA */}
+                    <motion.button
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => setModalOpen(true)}
+                        className="mt-8 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg shadow-blue-900/30 hover:shadow-blue-500/40 transition flex items-center gap-3"
+                    >
+                        Get Your Wyvern Line
+                        <span className="text-lg">→</span>
                     </motion.button>
+
+                    <p className="text-xs text-gray-400 mt-4">
+                        Trusted by startups, enterprises & telecom resellers
+                    </p>
                 </motion.div>
 
-                {/* Image Placeholder */}
+                {/* IMAGE */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="hidden md:flex justify-end" // ✅ UPDATED: hide on mobile, align right on desktop
+                    className="hidden md:flex justify-end"
                 >
-                    {/* ✅ UPDATED: replaced placeholder with logo (optional) */}
-                    <Image
-                        src="/logoz.png"
-                        alt="Wyvern Logo"
-                        width={800}
-                        height={800}
-                        className="w-84 h-84 animate-pulse object-contain"
-                    // className="w-64 h-64 object-contain animate-pulse bg-none"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full" />
+                        <Image
+                            src="/logoz.png"
+                            alt="Wyvern Logo"
+                            width={500}
+                            height={500}
+                            className="relative w-80 h-80 object-contain"
+                        />
+                    </div>
                 </motion.div>
 
             </div>
 
             <WyvernFormModal open={modalOpen} setOpen={setModalOpen} />
         </section>
-
     );
 }

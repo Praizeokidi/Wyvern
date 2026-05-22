@@ -1,179 +1,154 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Playfair_Display } from "next/font/google";
-import { Inter } from "next/font/google";
+import Link from "next/link";
 import { Jost } from "next/font/google";
-import { Cairo } from "next/font/google";
 
-
-
-
-
-const cairo = Cairo({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
-});
-const playfair = Playfair_Display({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const inter = Inter({ subsets: ["latin"] });
-
-const jost = Jost({
-    subsets: ["latin"],
-});
+const jost = Jost({ subsets: ["latin"] });
 
 export default function TermsOfService() {
     return (
-        <main className="bg-gray-50 text-gray-800">
+        <main className="bg-slate-950 text-white">
+
             <Navbar />
 
             {/* HERO */}
-            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-8 px-6 text-center">
-                <header className="text-center py-16 px-4 ">
-                    <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-10`}>
+            <section className="relative py-24 text-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
+
+                <div className="relative max-w-3xl mx-auto px-6">
+                    <h1 className={`${jost.className} text-4xl md:text-5xl font-bold`}>
                         Terms of Service
                     </h1>
-                    <p className={`${jost.className} text-lg opacity-90`}>
-                        Please read these terms carefully before using our services
+
+                    <p className="mt-4 text-gray-400">
+                        Please read these terms carefully before using WYVERN services.
                     </p>
-                    <p className={`${jost.className} mt-2 text-sm opacity-70`}>
+
+                    <p className="mt-2 text-sm text-gray-500">
                         Home / Terms of Service
                     </p>
-                </header>
+                </div>
             </section>
 
             {/* CONTENT */}
-            <section className="max-w-6xl mx-auto px-6 py-12 space-y-8">
+            <section className={`${jost.className} max-w-5xl mx-auto px-6 py-16 space-y-12`}>
 
-
-                <section className="mb-1">
-
-                    {/* INTRO */}
-                    <h2 className={`${jost.className} text-3xl text-gray-900 font-bold`}>
-                        Introduction
-                    </h2>
-                    <p className={`${jost.className} text-gray-600 mb-4 text-base leading-relaxed`}>
+                {/* INTRO */}
+                <div>
+                    <h2 className="text-2xl font-bold">Introduction</h2>
+                    <p className="text-gray-400 mt-3 leading-relaxed">
                         Welcome to WYVERN Africa Limited. By accessing or using our telecommunications
-                        services, including voice, SMS, SIP trunking, and cloud communication solutions,
-                        you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.
+                        services—including voice, SMS, SIP trunking, and cloud communication solutions—
+                        you agree to be bound by these Terms of Service. If you do not agree, please discontinue use.
                     </p>
-                </section>
-                {/* SERVICES */}
-                <h2 className={`${jost.className} text-2xl text-gray-800 font-bold mb-2`}>
-                    Our Services
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-2`}>
-                    WYVERN provides communication solutions designed for individuals and businesses.
-                    These include:
-                </p>
+                </div>
 
-                <ol className=" list-decimal list-outside pl-6 space-y-1 marker:font-semibold">
-                    <li className={`${jost.className} text-gray-600 leading-snug`}>
-                        SIP trunking and direct inward dialing numbers
-                    </li>
-                    <li className={`${jost.className} text-gray-600 leading-snug`}>
-                        Cloud-hosted PBX systems
-                    </li>
-                    <li className={`${jost.className} text-gray-600 leading-snug`}>
-                        Voice and video conferencing solutions
-                    </li>
-                    <li className={`${jost.className} text-gray-600 leading-snug`}>
-                        Interactive Voice Response (IVR) systems
-                    </li>
-                </ol>
+                {/* SERVICES */}
+                <div>
+                    <h2 className="text-2xl font-bold">Our Services</h2>
+                    <p className="text-gray-400 mt-3 mb-4">
+                        WYVERN provides enterprise-grade communication solutions:
+                    </p>
+
+                    <ol className="list-decimal pl-6 space-y-2 text-gray-300">
+                        <li>SIP trunking and direct inward dialing numbers</li>
+                        <li>Cloud-hosted PBX systems</li>
+                        <li>Voice and video conferencing solutions</li>
+                        <li>Interactive Voice Response (IVR) systems</li>
+                    </ol>
+                </div>
 
                 {/* USER RESPONSIBILITIES */}
-                <h2 className={`${jost.className} text-2xl text-gray-800 font-bold -mt-4 mb-1`}>
-                    User Responsibilities
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-2 leading-relaxed`}>
-                    By using our services, you agree to:
-                </p>
+                <div>
+                    <h2 className="text-2xl font-bold">User Responsibilities</h2>
 
-                <ol className={`${jost.className} list-decimal list-outside pl-6 space-y-1`}>
-                    <li className=" text-gray-600 leading-snug">
-                        Provide accurate and complete information when registering
-                    </li>
-                    <li className=" text-gray-600 leading-snug">
-                        Use the service only for lawful purposes
-                    </li>
-                    <li className=" text-gray-600 leading-snug">
-                        Not engage in fraudulent, abusive, or harmful activities
-                    </li>
-                    <li className=" text-gray-600 leading-snug">
-                        Maintain the confidentiality of your account details
-                    </li>
-                </ol>
+                    <ol className="list-decimal pl-6 space-y-2 mt-3 text-gray-300">
+                        <li>Provide accurate and complete account information</li>
+                        <li>Use services only for lawful purposes</li>
+                        <li>Avoid fraudulent or harmful activities</li>
+                        <li>Maintain confidentiality of account credentials</li>
+                    </ol>
+                </div>
 
-                {/* PAYMENTS */}
-                <h2 className={`${jost.className} text-gray-800 text-2xl -mt-4 font-bold mb-1`}>
-                    Payments & Billing
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-2 leading-relaxed`}>
-                    All services may be subject to applicable fees. You agree to pay all charges
-                    associated with your use of WYVERN services. Failure to make payments may
-                    result in suspension or termination of your service.
-                </p>
+                {/* BILLING */}
+                <div>
+                    <h2 className="text-2xl font-bold">Payments & Billing</h2>
+                    <p className="text-gray-400 mt-3 leading-relaxed">
+                        All services may be subject to applicable fees. You agree to pay all charges
+                        associated with your use of WYVERN services. Failure to pay may result in suspension or termination.
+                    </p>
+                </div>
 
-                {/* LIMITATION */}
-                <h2 className={`${jost.className} text-gray-800 text-2xl font-bold mt-4 mb-1`}>
-                    Limitation of Liability
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-4 leading-relaxed`}>
-                    WYVERN shall not be liable for any indirect, incidental, or consequential damages,
-                    including loss of data, business interruption, or loss of profits arising from the use
-                    or inability to use our services.
-                </p>
+                {/* LIABILITY */}
+                <div>
+                    <h2 className="text-2xl font-bold">Limitation of Liability</h2>
+                    <p className="text-gray-400 mt-3 leading-relaxed">
+                        WYVERN shall not be liable for any indirect, incidental, or consequential damages,
+                        including loss of data, business interruption, or loss of profits arising from service use.
+                    </p>
+                </div>
 
                 {/* TERMINATION */}
-                <h2 className={`${jost.className} text-gray-800 text-2xl font-bold mt-4 mb-1`}>
-                    Termination
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-4 leading-relaxed`}>
-                    We reserve the right to suspend or terminate your access to our services at any time
-                    if you violate these terms or engage in activities that harm our platform or users.
-                </p>
+                <div>
+                    <h2 className="text-2xl font-bold">Termination</h2>
+                    <p className="text-gray-400 mt-3 leading-relaxed">
+                        We may suspend or terminate access at any time if terms are violated or if usage
+                        harms our platform or users.
+                    </p>
+                </div>
 
                 {/* CHANGES */}
-                <h2 className={`${jost.className} text-gray-800 text-2xl font-bold mt-4 mb-1`}>
-                    Changes to Terms
-                </h2>
-                <p className={`${jost.className} text-gray-600 mb-6 leading-relaxed`}>
-                    WYVERN may update these Terms of Service from time to time. Continued use of our
-                    services after changes constitutes acceptance of the updated terms.
-                </p>
+                <div>
+                    <h2 className="text-2xl font-bold">Changes to Terms</h2>
+                    <p className="text-gray-400 mt-3 leading-relaxed">
+                        We may update these Terms periodically. Continued use after changes implies acceptance.
+                    </p>
+                </div>
 
-                {/* CONTACT */}
-                <h2 className={`${jost.className} text-gray-800 text-2xl font-bold mt-8 mb-1`}>
-                    Contact Us
-                </h2>
-                <p className={`${jost.className} text-gray-600`}>
-                    If you have any questions about these Terms, please contact us at:
-                </p>
+            </section>
 
-                <p className={`${jost.className} text-gray-700 -mt-7`}>
-                    Email:
-                    <a
-                        href="mailto:wyvernglobalservice@gmail.com"
-                        className="text-blue-600 hover:underline ml-1"
-                    >
-                        wyvernglobalservice@gmail.com
-                    </a>
-                </p>
-                <p className={`${jost.className} text-gray-700 -mt-7 -mb-7`}>
-                    Phone:
-                    <a href="tel:+2348055512395" className="text-blue-600 hover:underline ml-1">
-                        +234 805 551 2395
-                    </a>
-                </p>
+            {/* PREMIUM CTA SECTION */}
+            <section className={`${jost.className} py-20 bg-slate-950`}>
+                <div className="max-w-5xl mx-auto px-6">
 
+                    <div className="bg-white/5 border border-white/10 rounded-3xl p-10 text-center">
 
+                        <h2 className="text-3xl md:text-4xl font-bold">
+                            Need clarification?
+                        </h2>
 
+                        <p className="text-gray-400 mt-3">
+                            Our legal and support team is available to help you understand how WYVERN services operate.
+                        </p>
+
+                        <div className="mt-8 flex justify-center gap-4 flex-wrap">
+
+                            <Link
+                                href="/contact"
+                                className="bg-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-500 transition"
+                            >
+                                Contact Support
+                            </Link>
+
+                            <a
+                                href="mailto:wyvernglobalservice@gmail.com"
+                                className="border border-white/20 px-6 py-3 rounded-xl hover:bg-white/10 transition"
+                            >
+                                Email Legal Team
+                            </a>
+
+                        </div>
+
+                        <p className="text-gray-500 text-sm mt-6">
+                            Last updated: May 2026
+                        </p>
+
+                    </div>
+                </div>
             </section>
 
             <Footer />

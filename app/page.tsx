@@ -6,7 +6,8 @@ import Footer from "@/components/Footer";
 import FeaturesStat from "@/components/FeaturesStats";
 import Services from "@/components/Services";
 import Partners from "@/components/Partners";
-import Contact from "@/components/Contact";
+
+import BookDemo from "@/components/BookDemoSection"
 import { FAQSection } from "@/components/FAQSection";
 import Blog from "@/components/Blog";
 import "./globals.css";
@@ -20,7 +21,11 @@ export default function Home() {
       <FeaturesStat />
       <Services />
       <Partners />
-      <Contact />
+
+      <section id="demo">
+        <BookDemo />
+      </section>
+
       <FAQSection />
       <Blog />
       <Footer />

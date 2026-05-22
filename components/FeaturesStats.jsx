@@ -5,96 +5,156 @@ import CountUp from "react-countup";
 import Image from "next/image";
 import { Cairo } from "next/font/google";
 
-
-
 const cairo = Cairo({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
+    weight: ["400", "500", "600", "700"],
 });
 
-
 const widgetVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 export default function CustomerStats() {
     return (
-        <div className="bg-white mb-16">
-            <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 rounded-xl shadow-lg bg-gray-100 mt-10">
+        <section className="relative bg-slate-950 py-24 px-6 overflow-hidden">
 
-                <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* BACKGROUND GLOW */}
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
 
-                    {/* LEFT */}
+            <div className="relative max-w-7xl mx-auto">
+
+                <div className="grid md:grid-cols-2 gap-16 items-center">
+
+                    {/* ================= LEFT ================= */}
                     <motion.div
-                        className="w-full md:w-1/2 text-center md:text-left"
+                        className="space-y-6"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={widgetVariants}
                     >
 
-                        {/* IMAGE INPUT ADDED HERE */}
-                        <div className="w-full flex justify-center md:justify-start mb-6">
-                            <Image
-                                src="/Virtual-Assistant.png"   // replace with your image path
-                                alt="Customer Support"
-                                width={400}
-                                height={250}
-                                className="rounded-xl shadow-md w-full max-w-md h-auto object-cover"
-                                priority
-                            />
+                        {/* IMAGE CARD (PREMIUM DEPTH STYLE) */}
+                        <div className="relative w-full max-w-xl mx-auto md:mx-0">
+
+                            {/* glow behind image */}
+                            <div className="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-2xl" />
+
+                            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+
+                                <Image
+                                    src="/Virtual-Assistant.png"
+                                    alt="Customer Support"
+                                    width={600}
+                                    height={400}
+                                    className="w-full h-auto object-cover"
+                                    priority
+                                />
+
+                                {/* subtle overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent" />
+                            </div>
+
+                            {/* floating badge */}
+                            <div className="absolute -bottom-5 right-4 bg-slate-900/90 backdrop-blur border border-white/10 px-4 py-2 rounded-xl shadow-lg">
+                                <p className="text-xs text-gray-400">Regulated by</p>
+                                <p className="text-sm font-semibold text-white">
+                                    NCC Certified
+                                </p>
+                            </div>
                         </div>
 
-                        <p className={`${cairo.className} mt-4 text-gray-700 leading-relaxed`}>
-                            WYVERN is a fully licensed telecommunications company regulated by the Nigerian Communications Commission (NCC). We specialize in delivering reliable and affordable voice, data, SMS, and video communication services to individuals and businesses across Nigeria.
+                        {/* DESCRIPTION */}
+                        <p className={`${cairo.className} text-gray-300 leading-relaxed text-center md:text-left`}>
+                            WYVERN is a licensed telecommunications infrastructure provider
+                            regulated by the Nigerian Communications Commission (NCC),
+                            delivering secure, scalable and reliable communication systems
+                            across Africa.
                         </p>
                     </motion.div>
 
-                    {/* RIGHT */}
+                    {/* ================= RIGHT ================= */}
                     <motion.div
-                        className="w-full md:w-1/2 flex flex-col justify-center gap-8"
+                        className="space-y-10"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={widgetVariants}
                     >
-                        {/* STATS GRID */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
 
-                            <div className="bg-blue-50 p-6 rounded-xl shadow-lg">
+                        {/* TITLE */}
+                        <div>
+                            <h2 className={`${cairo.className} text-4xl md:text-5xl font-bold text-white leading-tight`}>
+                                Built on Trust,
+                                <span className="text-blue-400"> Backed by Performance</span>
+                            </h2>
+
+                            <p className="mt-4 text-gray-400">
+                                Delivering measurable impact through years of excellence,
+                                reliability, and customer satisfaction.
+                            </p>
+                        </div>
+
+                        {/* STATS GRID (PREMIUM CARDS) */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                            {/* CARD 1 */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur hover:bg-white/10 transition">
                                 <CountUp
                                     end={10}
                                     duration={3}
                                     suffix="+"
-                                    className="text-4xl font-bold text-blue-600"
+                                    className="text-4xl font-bold text-blue-400"
                                 />
-                                <p className="mt-2 text-gray-700">
-                                    Years of Experience
-                                </p>
+                                <p className="mt-2 text-gray-300">Years of Excellence</p>
                             </div>
 
-                            <div className="bg-green-50 p-6 rounded-xl shadow-lg">
+                            {/* CARD 2 */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur hover:bg-white/10 transition">
                                 <CountUp
                                     end={5000}
                                     duration={3}
                                     separator=","
-                                    className="text-4xl font-bold text-green-600"
+                                    className="text-4xl font-bold text-emerald-400"
                                 />
-                                <p className="mt-2 text-gray-700">
-                                    Customers Served
-                                </p>
+                                <p className="mt-2 text-gray-300">Customers Served</p>
+                            </div>
+
+                            {/* CARD 3 (NEW PREMIUM ADDITION) */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur hover:bg-white/10 transition">
+                                <CountUp
+                                    end={99}
+                                    duration={3}
+                                    suffix="%"
+                                    className="text-4xl font-bold text-cyan-400"
+                                />
+                                <p className="mt-2 text-gray-300">Uptime Reliability</p>
+                            </div>
+
+                            {/* CARD 4 (NEW PREMIUM ADDITION) */}
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur hover:bg-white/10 transition">
+                                <CountUp
+                                    end={24}
+                                    duration={2}
+                                    suffix="/7"
+                                    className="text-4xl font-bold text-purple-400"
+                                />
+                                <p className="mt-2 text-gray-300">Global Support</p>
                             </div>
 
                         </div>
 
-                        <p className={`${cairo.className} text-gray-700 leading-relaxed text-center md:text-left`}>
-                            With a strong track record of satisfied clients and years of experience,
-                            we’re proud to deliver exceptional service across every interaction.
+                        {/* FOOTNOTE */}
+                        <p className={`${cairo.className} text-gray-400 text-center md:text-left`}>
+                            Consistent performance, trusted infrastructure, and scalable
+                            communication systems designed for global standards.
                         </p>
+
                     </motion.div>
+
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 }

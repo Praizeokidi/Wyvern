@@ -1,107 +1,147 @@
 "use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import React from "react";
-import { Cairo } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
-import { Jost } from "next/font/google";
-
-
+import { Cairo, Playfair_Display, Jost } from "next/font/google";
+import { Download, ArrowRight, Smartphone, Monitor, Building2 } from "lucide-react";
+import Link from "next/link";
 
 const jost = Jost({ subsets: ["latin"] });
 
 const cairo = Cairo({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"], // optional but recommended
+    weight: ["400", "500", "600", "700"],
 });
-const playfair = Playfair_Display({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700", "800", "900"],
-});
-
 
 export default function DownloadsPage() {
     const cards = [
         {
-            title: "Desktop Users",
+            title: "Desktop Experience",
+            icon: Monitor,
+            desc: "Optimized for Windows & macOS communication systems.",
             items: [
-                "For PC/Laptops only",
-                "Premium Support",
-                "Soft Phone",
-                "Free",
+                "Softphone integration",
+                "HD voice quality",
+                "Enterprise-grade stability",
+                "Free installation"
             ],
+            link: "#"
         },
         {
-            title: "WYVERN-Subscriber for Android Users",
+            title: "WYVERN Mobile App",
+            icon: Smartphone,
+            desc: "Stay connected anywhere with full mobile communication access.",
             items: [
-                "For Subscribers only",
-                "Basic Phone Accessories",
-                "Dedicated Swiftel Line",
-                "Premium Support",
-                "Video Conferencing",
-                "Free",
+                "Dedicated WYVERN line",
+                "Video & voice calls",
+                "Real-time messaging",
+                "Premium support"
             ],
+            link: "#"
         },
         {
-            title: "WYVERN-Enterprise for Android Users",
+            title: "Enterprise Suite",
+            icon: Building2,
+            desc: "Scalable communication system for organizations and teams.",
             items: [
-                "For Enterprise only",
-                "Basic Phone Accessories",
-                "Dedicated Swiftel Line",
-                "Premium Support",
-                "Video Conferencing",
-                "Free",
+                "Multi-user management",
+                "Advanced call routing",
+                "Analytics dashboard",
+                "Priority support"
             ],
-        },
+            link: "#"
+        }
     ];
 
     return (
-        <div className="bg-slate-950">
+        <div className="bg-slate-950 text-white">
             <Navbar />
 
-            {/* Header */}
-            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-10 px-6 text-center relative">
-                <header className="text-center py-16 px-4 ">
-                    <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-10`}>Download Center</h1>
-                    <p className={`${jost.className} text-lg opacity-90`}>
-                        Download WYVERN Softphone and gain access to seamless communication
+            {/* ================= HERO ================= */}
+            <section className="relative py-28 text-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
+
+                <div className={`${jost.className}  relative max-w-3xl mx-auto px-6`}>
+                    <h1 className="text-4xl md:text-5xl font-bold">
+                        Download <span className="text-blue-400">WYVERN</span>
+                    </h1>
+
+                    <p className="mt-4 text-gray-400">
+                        Access secure communication tools built for individuals, teams, and enterprise systems.
                     </p>
-                    <small className={`${jost.className} text-gray-500 mt-2 text-sm opacity-100`}>
-                        Home / Downloads
-                    </small>
-                </header>
-
+                </div>
             </section>
-            {/* Cards */}
-            <section>
-                <main className="max-w-5xl -mt-10 mx-auto px-6 py-12 grid md:grid-cols-3 gap-8">
-                    {cards.map((card, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-slate-900 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/10 transition flex flex-col h-full"
-                        >
-                            <h2 className={`${jost.className} text-xl font-semibold mb-4`}>
-                                {card.title}
-                            </h2>
 
-                            <ul className={`${jost.className} space-y-2 text-gray-400 mb-6`}>
-                                {card.items.map((item, i) => (
-                                    <li key={i}>• {item}</li>
-                                ))}
-                            </ul>
+            {/* ================= CARDS ================= */}
+            <section className={`${jost.className} relative py-20 px-6`}>
+                <div className="absolute inset-0 bg-slate-900" />
 
-                            <a
-                                href="#"
-                                className={`${jost.className} font-semibold mt-auto block text-center bg-blue-600 py-2 rounded-lg hover:bg-blue-500 transition`}
+                <div className="relative max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+
+                    {cards.map((card, idx) => {
+                        const Icon = card.icon;
+
+                        return (
+                            <div
+                                key={idx}
+                                className="group relative bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-lg hover:shadow-blue-500/20 transition"
                             >
-                                Download →
-                            </a>
-                        </div>
-                    ))}
-                </main>
+
+                                {/* glow */}
+                                <div className="absolute -inset-1 bg-blue-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition rounded-2xl" />
+
+                                <div className="relative">
+
+                                    {/* ICON */}
+                                    <Icon className="text-blue-400 w-7 h-7 mb-4" />
+
+                                    {/* TITLE */}
+                                    <h2 className={`${jost.className} text-xl font-semibold`}>
+                                        {card.title}
+                                    </h2>
+
+                                    <p className="text-gray-400 text-sm mt-2 mb-4">
+                                        {card.desc}
+                                    </p>
+
+                                    {/* FEATURES */}
+                                    <ul className="text-gray-400 text-sm space-y-2 mb-6">
+                                        {card.items.map((item, i) => (
+                                            <li key={i}>✔ {item}</li>
+                                        ))}
+                                    </ul>
+
+                                    {/* CTA */}
+                                    <Link href={card.link}>
+                                        <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 font-semibold hover:shadow-lg transition">
+                                            Download
+                                            <Download className="w-4 h-4" />
+                                        </button>
+                                    </Link>
+
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* SECONDARY CTA */}
+                <div className="text-center mt-16">
+                    <p className="text-gray-400 mb-4">
+                        Need help choosing the right version?
+                    </p>
+
+                    <Link href="/contact">
+                        <button className="inline-flex items-center gap-2 px-8 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
+                            Talk to Support
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </Link>
+                </div>
+
             </section>
-
-
 
             <Footer />
         </div>
