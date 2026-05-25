@@ -140,7 +140,7 @@ function PolicyCard({ title, children }) {
     return (
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur hover:bg-white/10 transition">
             <h3 className="text-xl font-semibold mb-3">{title}</h3>
-            <p className="text-gray-300 leading-relaxed">{children}</p>
+            <div className="text-gray-300 leading-relaxed">{children}</div>
         </div>
     );
 }

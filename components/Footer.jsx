@@ -130,7 +130,7 @@ export default function Footer() {
                     <ul className={`${poppins.className} space-y-3 text-sm`}>
                         {[
                             { name: "Privacy Policy", href: "/privacy" },
-                            { name: "About Us", href: "/about" },
+                            { name: "About Us", href: "/about-us" },
                             { name: "Insights", href: "/faq" },
                             { name: "Collaborations", href: "/contact" },
                             { name: "Terms of Service", href: "/terms" },
@@ -147,7 +147,7 @@ export default function Footer() {
                                     <span className="text-blue-400 group-hover:text-white transition duration-300">
                                         <FiArrowUpRight className="text-sm" />
                                     </span>
-                                        {link.name}
+                                    {link.name}
                                 </Link>
                             </motion.li>
                         ))}
