@@ -94,7 +94,13 @@ export default function ServicesPage() {
             <Navbar />
 
             {/* ================= HERO ================= */}
-            <section className="relative overflow-hidden pt-36 pb-28 px-6">
+            <section className="
+        relative 
+        overflow-hidden 
+        pt-28 md:pt-36      /* CHANGE: better mobile spacing */
+        pb-20 md:pb-28
+        px-4 sm:px-6        /* CHANGE: safer mobile padding */
+    ">
 
                 {/* BACKGROUND */}
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-black" />
@@ -103,7 +109,15 @@ export default function ServicesPage() {
 
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 blur-3xl rounded-full" />
 
-                <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                <div className="
+        relative 
+        max-w-7xl 
+        mx-auto 
+        grid 
+        lg:grid-cols-2 
+        gap-10 md:gap-16    /* CHANGE: smaller mobile gap */
+        items-center
+    ">
 
                     {/* LEFT */}
                     <motion.div
@@ -117,21 +131,42 @@ export default function ServicesPage() {
                             Enterprise Communication Solutions
                         </div>
 
-                        <h1 className={`${jost.className} text-5xl md:text-7xl font-bold leading-tight`}>
+                        <h1 className={`
+        ${jost.className} 
+        text-4xl            /* CHANGE: better mobile fit */
+        sm:text-5xl
+        md:text-6xl
+        lg:text-7xl
+        font-bold 
+        leading-tight
+    `}>
                             Powering Modern
                             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                                 {" "}Business Communication
                             </span>
                         </h1>
 
-                        <p className={`${cairo.className} text-lg md:text-xl text-gray-400 mt-8 max-w-2xl leading-relaxed`}>
+                        <p className={`
+        ${cairo.className} 
+        text-base sm:text-lg md:text-xl   /* CHANGE: responsive text scaling */
+        text-gray-400 
+        mt-6 md:mt-8
+        max-w-2xl 
+        leading-relaxed
+    `}>
                             WYVERN delivers secure, scalable, and enterprise-grade voice solutions
                             designed to help businesses communicate faster, serve customers better,
                             and operate globally without limitations.
                         </p>
 
                         {/* BUTTONS */}
-                        <div className="flex flex-wrap gap-4 mt-10">
+                        <div className="
+        flex 
+        flex-col sm:flex-row   /* CHANGE: stacked buttons on phones */
+        flex-wrap 
+        gap-4 
+        mt-8 md:mt-10
+    ">
 
                             <Link
                                 href="/contact"
@@ -151,13 +186,28 @@ export default function ServicesPage() {
                         </div>
 
                         {/* TRUST ROW */}
-                        <div className="grid grid-cols-3 gap-6 mt-14">
+                        <div className="
+        grid 
+        grid-cols-1          /* CHANGE: stack on very small phones */
+        sm:grid-cols-3       /* CHANGE: return to 3 cols from small screens upward */
+        gap-4                /* CHANGE: smaller gap for mobile */
+        md:gap-6 
+        mt-10                /* CHANGE: reduced top spacing on mobile */
+        md:mt-14
+    ">
                             {stats.map((item, i) => (
                                 <div
                                     key={i}
-                                    className="border border-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur-xl"
+                                    className="
+    border border-white/10 
+    bg-white/5 
+    rounded-2xl 
+    p-4 md:p-5              /* CHANGE: responsive padding */
+    backdrop-blur-xl
+    text-center             /* CHANGE: aligns stats better on mobile */
+"
                                 >
-                                    <h3 className="text-3xl font-bold text-white">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white">
                                         {item.title}
                                     </h3>
                                     <p className="text-gray-400 text-sm mt-1">
@@ -178,9 +228,21 @@ export default function ServicesPage() {
 
                         <div className="relative rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-[0_0_80px_rgba(37,99,235,0.15)]">
 
-                            <div className="grid grid-cols-2 gap-5">
+                            <div className="
+        grid 
+        grid-cols-1          /* CHANGE: single column on phones */
+        sm:grid-cols-2       /* CHANGE: 2-column layout from small tablets upward */
+        gap-5
+        items-stretch        /* CHANGE: keeps equal card heights */
+    ">
 
-                                <div className="rounded-2xl bg-slate-900/70 border border-white/10 p-6">
+                                <div className="
+        rounded-2xl 
+        bg-slate-900/70 
+        border border-white/10 
+        p-6
+        h-full               /* CHANGE: equal height cards */
+    ">
                                     <ShieldCheck className="text-blue-400 mb-4" size={36} />
                                     <h3 className="font-semibold text-lg">
                                         Secure Infrastructure
@@ -190,7 +252,14 @@ export default function ServicesPage() {
                                     </p>
                                 </div>
 
-                                <div className="rounded-2xl bg-slate-900/70 border border-white/10 p-6 mt-10">
+                                <div className="
+        rounded-2xl 
+        bg-slate-900/70 
+        border border-white/10 
+        p-6
+        sm:mt-10             /* CHANGE: margin only on desktop/tablet */
+        h-full
+    ">
                                     <Clock3 className="text-cyan-400 mb-4" size={36} />
                                     <h3 className="font-semibold text-lg">
                                         Always Available
@@ -200,7 +269,14 @@ export default function ServicesPage() {
                                     </p>
                                 </div>
 
-                                <div className="rounded-2xl bg-slate-900/70 border border-white/10 p-6 -mt-4">
+                                <div className="
+        rounded-2xl 
+        bg-slate-900/70 
+        border border-white/10 
+        p-6
+        sm:-mt-4             /* CHANGE: negative margin only on larger screens */
+        h-full
+    ">
                                     <PhoneCall className="text-blue-400 mb-4" size={36} />
                                     <h3 className="font-semibold text-lg">
                                         Crystal Clear Calls
@@ -210,7 +286,15 @@ export default function ServicesPage() {
                                     </p>
                                 </div>
 
-                                <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 p-6">
+                                <div className="
+        rounded-2xl 
+        bg-gradient-to-br 
+        from-blue-600 
+        to-cyan-500 
+        p-6
+        flex flex-col justify-center   /* CHANGE: vertically centered */
+        min-h-[220px]                  /* CHANGE: consistent premium sizing */
+    ">
                                     <h3 className="text-4xl font-bold">
                                         500+
                                     </h3>
@@ -425,7 +509,12 @@ export default function ServicesPage() {
 
             {/* ================= FINAL CTA ================= */}
             <section
-                className="relative py-28 px-6 overflow-hidden"
+                className="
+    relative 
+    py-20 md:py-28       /* CHANGE: reduced mobile height */
+    px-4 sm:px-6
+    overflow-hidden
+"
                 style={{
                     backgroundImage: "url('/hero1.jpg')",
                     backgroundSize: "cover",
@@ -440,7 +529,12 @@ export default function ServicesPage() {
 
                 <div className="relative max-w-5xl mx-auto text-center text-white">
 
-                    <h2 className={`${playfair.className} text-5xl md:text-6xl font-bold leading-tight`}>
+                    <h2 className={`
+        ${playfair.className} 
+        text-4xl sm:text-5xl md:text-6xl   /* CHANGE: responsive scaling */
+        font-bold 
+        leading-tight
+    `}>
                         Ready to modernize your business communication?
                     </h2>
 
