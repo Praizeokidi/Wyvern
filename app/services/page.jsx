@@ -163,6 +163,7 @@ export default function ServicesPage() {
                         <div className="
         flex 
         flex-col sm:flex-row   /* CHANGE: stacked buttons on phones */
+        items-start
         flex-wrap 
         gap-4 
         mt-8 md:mt-10
@@ -341,61 +342,65 @@ export default function ServicesPage() {
                     {/* GRID */}
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
 
-                        {services.map((service, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.08 }}
-                                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl p-8 hover:border-blue-500/40 transition-all duration-500"
-                            >
+                        {services.map((service, i) => {
+                            const Icon = service.icon;
 
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-blue-500/10 to-cyan-400/10" />
+                            return (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 40 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.08 }}
+                                    className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl p-8 hover:border-blue-500/40 transition-all duration-500"
+                                >
 
-                                <div className="relative">
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-blue-500/10 to-cyan-400/10" />
 
-                                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20">
-                                        <service.icon className="text-white w-8 h-8" />
+                                    <div className="relative">
+
+                                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20">
+                                            <Icon className="text-white w-8 h-8" />
+                                        </div>
+
+                                        <h3 className={`${jost.className} text-2xl font-bold mb-4`}>
+                                            {service.title}
+                                        </h3>
+
+                                        <p className={`${cairo.className} text-gray-400 leading-relaxed mb-8`}>
+                                            {service.desc}
+                                        </p>
+
+                                        <ul className="space-y-3 mb-10 text-sm text-gray-300">
+                                            <li className="flex items-center gap-2">
+                                                <CheckCircle2 size={16} className="text-blue-400" />
+                                                Enterprise-grade reliability
+                                            </li>
+
+                                            <li className="flex items-center gap-2">
+                                                <CheckCircle2 size={16} className="text-blue-400" />
+                                                Seamless scalability
+                                            </li>
+
+                                            <li className="flex items-center gap-2">
+                                                <CheckCircle2 size={16} className="text-blue-400" />
+                                                Dedicated support
+                                            </li>
+                                        </ul>
+
+                                        <Link
+                                            href={service.link}
+                                            className={`${jost.className} inline-flex items-center gap-2 text-blue-400 font-semibold group-hover:text-cyan-300 transition`}
+                                        >
+                                            Explore Service
+                                            <ArrowRight size={18} />
+                                        </Link>
+
                                     </div>
 
-                                    <h3 className={`${jost.className} text-2xl font-bold mb-4`}>
-                                        {service.title}
-                                    </h3>
-
-                                    <p className={`${cairo.className} text-gray-400 leading-relaxed mb-8`}>
-                                        {service.desc}
-                                    </p>
-
-                                    <ul className="space-y-3 mb-10 text-sm text-gray-300">
-                                        <li className="flex items-center gap-2">
-                                            <CheckCircle2 size={16} className="text-blue-400" />
-                                            Enterprise-grade reliability
-                                        </li>
-
-                                        <li className="flex items-center gap-2">
-                                            <CheckCircle2 size={16} className="text-blue-400" />
-                                            Seamless scalability
-                                        </li>
-
-                                        <li className="flex items-center gap-2">
-                                            <CheckCircle2 size={16} className="text-blue-400" />
-                                            Dedicated support
-                                        </li>
-                                    </ul>
-
-                                    <Link
-                                        href={service.link}
-                                        className={`${jost.className} inline-flex items-center gap-2 text-blue-400 font-semibold group-hover:text-cyan-300 transition`}
-                                    >
-                                        Explore Service
-                                        <ArrowRight size={18} />
-                                    </Link>
-
-                                </div>
-
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            );
+                        })}
 
                     </div>
 
