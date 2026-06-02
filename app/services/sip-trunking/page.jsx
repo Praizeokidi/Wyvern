@@ -1,126 +1,176 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import Testimonial from "@/components/Testimonials";
 import BookSession from "@/components/Bas";
-import { Jost } from "next/font/google";
+import { Jost, Playfair_Display, Cairo } from "next/font/google";
 
+const jost = Jost({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const cairo = Cairo({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
-
-const jost = Jost({
-    subsets: ["latin"],
-});
 export default function SipTrunkingPage() {
     return (
-        <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
+        <div className={`${jost.className} bg-slate-950 text-white overflow-x-hidden`}>
             <Navbar />
 
-            {/* HERO */}
-            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-10 px-6 text-center relative ">
-                <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-25`}> SIP Trunking</h1>
+            {/* ================= HERO ================= */}
+            <section className="relative overflow-hidden py-28 md:py-36">
 
-            </section>
+                {/* background layers */}
+                <div className="absolute inset-0 bg-[url('/sip-trunking.jpg')] bg-cover bg-center opacity-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" />
+                <div className="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
 
-            {/* ================= HEADER ================= */}
-            <section className="max-w-5xl mx-auto px-4 sm:px-6 py-10 mt-16 sm:mt-20">
+                <div className="relative max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
 
-                {/* IMAGE */}
-                <div className="bg-white rounded-2xl shadow p-4 sm:p-6 flex justify-center">
-                    <Image
-                        src="/sip-trunking.jpg"
-                        alt="SIP Trunking"
-                        width={256}
-                        height={256}
-                        className="w-40 sm:w-64 h-auto object-contain"
-                    />
+                    {/* LEFT TEXT */}
+                    <div>
+                        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 mb-6">
+                            Cloud Voice Infrastructure
+                        </div>
+
+                        <h1 className={`${playfair.className} text-5xl md:text-6xl font-bold leading-tight`}>
+                            SIP Trunking <br />
+                            <span className="text-blue-400">Modern Voice Connectivity</span>
+                        </h1>
+
+                        <p className={`${cairo.className} text-gray-300 mt-6 text-lg leading-relaxed`}>
+                            Transform your business communication with scalable, cost-efficient
+                            and carrier-grade SIP Trunking built for modern enterprises.
+                        </p>
+                    </div>
+
+                    {/* RIGHT IMAGE */}
+                    <div className="relative flex justify-center lg:justify-end">
+                        <div className="relative w-full max-w-[600px] lg:max-w-[680px]">
+
+                            <div className="absolute -inset-10 bg-blue-500/10 blur-3xl rounded-full" />
+
+                            <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
+
+                                <Image
+                                    src="/sip-trunk.jpg"
+                                    alt="SIP Trunking"
+                                    width={800}
+                                    height={800}
+                                    className="w-full h-auto object-contain p-8"
+                                />
+
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             {/* ================= CONTENT ================= */}
-            <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+            <section className="max-w-6xl mx-auto px-6 -mt-10 md:-mt-14 lg:-mt-16 relative z-10">
 
-                <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-                    SIP Trunking
-                </h2>
+                <div className="space-y-16">
 
-                <h3 className="text-blue-600 text-xl sm:text-3xl font-semibold mb-3">
-                    Unleash the Power of SIP Trunking: Revolutionize Your Business Communication
-                </h3>
+                    {/* BLOCK 1 */}
+                    <div>
+                        <h2 className={`${playfair.className} text-3xl md:text-4xl font-bold`}>
+                            What is SIP Trunking?
+                        </h2>
 
-                <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
-                    SIP Trunking is a cutting-edge concept—it’s the present and future of
-                    business communication...
-                </p>
+                        <p className={`${cairo.className} text-gray-300 mt-4 leading-relaxed`}>
+                            SIP Trunking replaces traditional phone lines with a secure internet-based
+                            communication system that connects your PBX to the global telecom network.
+                        </p>
+                    </div>
 
-                <h3 className="font-semibold text-lg sm:text-xl mb-2">
-                    Demystifying SIP Trunking: What Is It & How Does It Work?
-                </h3>
+                    {/* BLOCK 2 GRID */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {[
+                            "Reduce communication costs significantly",
+                            "Scale instantly without physical lines",
+                            "Enable remote & hybrid workforce connectivity",
+                            "Improve call quality & reliability",
+                            "Integrate easily with existing PBX systems",
+                            "Global connectivity with local flexibility",
+                        ].map((item, i) => (
+                            <div key={i} className="flex gap-3">
+                                <div className="w-2 h-2 mt-2 rounded-full bg-blue-400" />
+                                <p className="text-gray-300">{item}</p>
+                            </div>
+                        ))}
+                    </div>
 
-                <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
-                    SIP trunking utilizes the power of the internet...
-                </p>
+                    {/* BLOCK 3 */}
+                    <div>
+                        <h3 className={`${jost.className} text-2xl font-semibold`}>
+                            How SIP Trunking Works
+                        </h3>
 
-                <h3 className="font-semibold text-lg sm:text-xl mb-2">
-                    Reap the Rewards: Top Benefits of Implementing WYVERN.ng SIP Trunking
-                </h3>
+                        <p className="text-gray-400 mt-3 leading-relaxed">
+                            SIP Trunking connects your internal phone system (PBX) to the internet,
+                            replacing physical phone lines with a flexible, cloud-based voice network.
+                        </p>
+                    </div>
 
-                <ul className="list-disc pl-5 space-y-2 text-gray-700 mb-6 text-sm sm:text-base">
-                    <li>Cost Savings compared to traditional systems</li>
-                    <li>Unparalleled Scalability for business growth</li>
-                    <li>Enhanced Flexibility across devices</li>
-                    <li>Crystal Clear Communication quality</li>
-                </ul>
+                    {/* FEATURES */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {[
+                            {
+                                title: "Virtual Numbers",
+                                desc: "Get global numbers without physical infrastructure."
+                            },
+                            {
+                                title: "Smart Call Routing",
+                                desc: "Route calls efficiently to improve response time."
+                            },
+                            {
+                                title: "Call Recording",
+                                desc: "Monitor and improve communication quality."
+                            },
+                            {
+                                title: "Seamless Integration",
+                                desc: "Works with existing PBX and CRM systems."
+                            },
+                        ].map((f, i) => (
+                            <div
+                                key={i}
+                                className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md"
+                            >
+                                <h4 className="text-white font-semibold text-lg">{f.title}</h4>
+                                <p className="text-gray-400 mt-2 text-sm">{f.desc}</p>
+                            </div>
+                        ))}
+                    </div>
 
-                <h3 className="font-semibold text-lg sm:text-xl mb-2">
-                    Unveiling the Mechanics: How SIP Trunking Functions
-                </h3>
-
-                <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
-                    Think of it as a digital bridge connecting your PBX...
-                </p>
-
-                <h3 className="font-semibold text-lg sm:text-xl mb-2">
-                    Key Features of SIP Trunking
-                </h3>
-
-                <ul className="list-disc pl-5 space-y-2 text-gray-700 mb-6 text-sm sm:text-base">
-                    <li>Virtual Phone Numbers</li>
-                    <li>Customizable Call Routing</li>
-                    <li>Call Recording</li>
-                    <li>Seamless Integration</li>
-                </ul>
-
-                <h3 className="text-blue-600 text-lg sm:text-xl font-semibold mb-2">
-                    Choosing the Perfect SIP Trunking Provider
-                </h3>
-
-                <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
-                    Selecting the right provider is crucial for your business communications...
-                </p>
-
-                <h3 className="font-semibold text-lg sm:text-xl mb-2">
-                    Ready to Upgrade Your Communications?
-                </h3>
-
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                    By switching to SIP Trunking, you’re investing in the future...
-                </p>
-
-                <div className="mt-4 text-gray-700 text-sm sm:text-base">
-                    <h4 className="font-semibold mb-2">Additional Resources:</h4>
-                    <ul className="list-disc pl-5 space-y-2">
-                        <li>Visit wyvern.com/service/sip-trunking</li>
-                        <li>Contact our sales team for consultation</li>
-                    </ul>
                 </div>
             </section>
 
-            {/* CTA + TESTIMONIAL */}
-            <div className="px-4 sm:px-0">
-                <BookSession />
+            {/* ================= CTA ================= */}
+            <section className="relative py-24 px-6 overflow-hidden">
 
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-black" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,#3b82f6,transparent_60%)]" />
+
+                <div className="relative max-w-4xl mx-auto text-center">
+
+                    <h2 className={`${playfair.className} text-4xl md:text-5xl font-bold`}>
+                        Upgrade to Enterprise Voice Infrastructure
+                    </h2>
+
+                    <p className="text-gray-300 mt-6">
+                        Deploy SIP Trunking with WYVERN and experience scalable, secure,
+                        and cost-efficient communication.
+                    </p>
+
+                    <div className="mt-10">
+                        <button className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-2xl font-semibold transition">
+                            Get Started
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <BookSession />
             <Testimonial />
             <Footer />
         </div>

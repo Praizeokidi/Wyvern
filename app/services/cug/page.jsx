@@ -1,127 +1,169 @@
+"use client";
+
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonial from "@/components/Testimonials";
 import BookSession from "@/components/Bas";
-import { FaFacebookF, FaTwitter } from "react-icons/fa";
-import { Jost } from "next/font/google";
+import { Jost, Playfair_Display, Cairo } from "next/font/google";
 
 
 
-
-const jost = Jost({
-    subsets: ["latin"],
-});
-
+const jost = Jost({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600", "700"] });
+const cairo = Cairo({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export default function ClosedUserGroupPage() {
+
+
+
+
     return (
-        <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
+        <div className="bg-slate-950 text-white overflow-x-hidden">
             <Navbar />
 
-            {/* HERO */}
-            <section className="bg-gradient-to-b from-slate-500 to-slate-950 text-white py-15 px-6 text-center relative ">
-                <h1 className={`${jost.className} text-4xl md:text-5xl font-bold mb-4 mt-25`}>Closed User Group</h1>
+            {/* ================= HERO ================= */}
+            <section className="relative overflow-hidden py-28 md:py-36">
 
-            </section>
+                <div className="absolute inset-0 bg-[url('/cug.jpg')] bg-cover bg-center opacity-15" />
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-950" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#3b82f6,transparent_60%)]" />
 
-            {/* HERO IMAGE */}
-            <section className="max-w-5xl mx-auto px-4 sm:px-6">
-                <div className="bg-white rounded-2xl shadow p-4 sm:p-6 mb-8 flex justify-center">
-                    <Image
-                        src="/cug.jpg"
-                        alt="CUG Illustration"
-                        width={500}
-                        height={300}
-                        className="w-full h-auto object-contain"
-                    />
+                <div className="relative max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
+
+                    {/* LEFT TEXT */}
+                    <div>
+
+                        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 mb-6">
+                            Enterprise Communication Network
+                        </div>
+
+                        <h1 className={`${playfair.className} text-5xl md:text-6xl font-bold leading-tight`}>
+                            Closed User Group <br />
+                            <span className="text-blue-400">Secure Business Communication</span>
+                        </h1>
+
+                        <p className={`${cairo.className} text-gray-300 mt-6 text-lg leading-relaxed`}>
+                            A private communication ecosystem designed to keep your teams connected,
+                            secure, and cost-efficient across all business operations.
+                        </p>
+
+                    </div>
+
+                    {/* RIGHT IMAGE */}
+                    <div className="relative flex justify-center lg:justify-end">
+
+                        <div className="relative w-full max-w-[420px]">
+
+                            <div className="absolute -inset-6 bg-blue-500/10 blur-3xl rounded-full" />
+
+                            <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
+
+                                <Image
+                                    src="/cug.jpg"
+                                    alt="CUG"
+                                    width={600}
+                                    height={600}
+                                    className="w-full h-auto object-cover"
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
             </section>
 
-            {/* CONTENT */}
-            <section className={`${jost.className} max-w-6xl mx-auto px-4 sm:px-6 pb-10 mt-6 sm:mt-10`}>
+            {/* ================= CONTENT ================= */}
+            <section className="max-w-6xl mx-auto px-6 py-24">
 
+                <div className="space-y-16">
 
-                <h2 className="text-3xl font-semibold mb-6">
-                    Closed User Group
-                </h2>
-
-                <div className="space-y-6 text-gray-700 leading-relaxed">
-
+                    {/* BLOCK 1 */}
                     <div>
-                        <h3 className="text-xl sm:text-3xl font-bold mb-3">
-                            Power Your Business with Seamless Communication – WYVERN CUG
-                        </h3>
-                        <p className="text-sm sm:text-base">
-                            In today’s high-speed business world, communication isn’t just important—it’s mission-critical. Every decision, every transaction, and every customer interaction depends on how quickly and effectively your teams can connect. That’s where WYVERN Closed User Group (CUG) comes in—designed to simplify communication and keep your business running at peak efficiency.           </p>
+                        <h2 className={`${playfair.className} text-3xl md:text-4xl font-bold`}>
+                            What is WYVERN CUG?
+                        </h2>
+
+                        <p className={`${cairo.className} text-gray-300 mt-4 leading-relaxed`}>
+                            WYVERN Closed User Group (CUG) is a secure private network
+                            that allows organizations to communicate internally at lower cost,
+                            higher speed, and improved security.
+                        </p>
                     </div>
 
-                    <div>
-                        <h3 className="text-lg sm:text-2xl font-semibold mb-2">
-                            What is WYVERN Closed User Group (CUG)?
-                        </h3>
-                        <p className="text-sm sm:text-base mb-3">
-                            WYVERN Closed User Group (CUG) creates a secure, private communication network within Nigeria’s mobile infrastructure—exclusively for your organization. It allows your employees to connect instantly through a dedicated system built for speed, reliability, and confidentiality.
+                    {/* BLOCK 2 */}
+                    <div className="grid md:grid-cols-2 gap-8">
 
-                            Unlike conventional communication channels, WYVERN CUG ensures your team stays connected within a controlled environment, enabling smoother collaboration and faster execution across departments.          </p>
-
-                        <h3 className="text-md font-semibold mb-1">
-                            Effortless Setup, Immediate Impact
-                        </h3>
-                        <p className="text-sm sm:text-base">
-                            Getting started is straightforward. Our experts partner with you to understand your operational needs, then deploy and configure your CUG system to fit seamlessly into your existing workflow. The result? Minimal disruption and maximum efficiency from day one.          </p>
+                        {[
+                            "Boost productivity through instant internal communication",
+                            "Reduce operational communication costs significantly",
+                            "Enhance security with private network isolation",
+                            "Enable mobility for remote and field teams",
+                            "Scale effortlessly as your organization grows",
+                            "Improve coordination across departments",
+                        ].map((item, i) => (
+                            <div key={i} className="flex gap-3">
+                                <div className="w-2 h-2 mt-2 rounded-full bg-blue-400" />
+                                <p className="text-gray-300">{item}</p>
+                            </div>
+                        ))}
 
                     </div>
 
+                    {/* BLOCK 3 */}
                     <div>
-                        <h3 className="text-2xl font-semibold mb-2 text-blue-600">
-                            Why WYVERN CUG is a Game-Changer
+                        <h3 className={`${jost.className} text-2xl font-semibold`}>
+                            Built for Every Industry
                         </h3>
-                        <ul className="list-disc pl-5 sm:pl-6 space-y-2 text-sm sm:text-base">
-                            <li><strong>Boost Productivity Across Teams:</strong> Enable faster communication, reduce delays, and empower your workforce to collaborate in real time—whether they’re in the office or on the move.</li>
-                            <li><strong>Cut Communication Costs Significantly:</strong> Reduce your call and SMS expenses with preferential in-group rates, helping you optimize spending without sacrificing quality.</li>
-                            <li><strong>Built-In Security You Can Trust:</strong> Keep sensitive business conversations protected within a secure private network, reducing risks and strengthening data confidentiality.</li>
-                            <li><strong>Work Anywhere, Stay Connected:</strong> With full mobile compatibility, your team remains connected and productive—no matter where business takes them.</li>
-                            <li><strong>Scales as You Grow:</strong> Easily expand your network as your organization evolves, without the need for complex upgrades or disruptions.</li>
-                        </ul>
-                    </div>
 
-                    <div>
-                        <h3 className="text-lg sm:text-xl font-semibold mb-2">
-                            Designed for Every Industry
-                        </h3>
-                        <p>WYVERN CUG delivers real value across multiple sectors:</p>
-                        <ul className="list-disc pl-5 sm:pl-6 space-y-1 text-sm sm:text-base">
-                            <li><strong>Healthcare:</strong> Enhance coordination, improve response times, and enable secure communication among medical teams</li>
-                            <li><strong>Finance:</strong> Support secure transactions and improve collaboration across branches</li>
-                            <li><strong>Retail:</strong> Streamline operations, manage inventory efficiently, and strengthen customer engagement</li>
-                            <li><strong>Construction:</strong> Improve on-site communication, coordination, and safety management</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 className="text-lg sm:text-xl font-semibold mb-2">
-                            Experience Smarter Communication with WYVERN CUG
-                        </h3>
-                        <p className="text-sm sm:text-base">
-                            Choosing WYVERN CUG means investing in a smarter, faster, and more secure way to communicate. It’s more than a service—it’s a foundation for better teamwork, improved efficiency, and sustained business growth.
-                            <br />
-                            <strong>Ready to Upgrade Your Communication? </strong> <br />
-                            Take the next step toward seamless connectivity. Visit our website or speak with our team today for a personalized consultation and see how WYVERN CUG can transform the way your business communicates.
+                        <p className="text-gray-400 mt-3">
+                            From healthcare to finance and logistics, WYVERN CUG adapts
+                            to enterprise communication needs across sectors.
                         </p>
                     </div>
 
                 </div>
-            </section >
 
+            </section>
 
-            {/* CTA */}
-            < div className="px-4 sm:px-0" >
+            {/* ================= CTA SECTION ================= */}
+            <section className="relative py-24 px-6 overflow-hidden">
+
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-black" />
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,white,transparent_60%)]" />
+
+                <div className="relative max-w-4xl mx-auto text-center">
+
+                    <h2 className={`${playfair.className} text-4xl md:text-5xl font-bold`}>
+                        Ready to transform your internal communication?
+                    </h2>
+
+                    <p className="text-gray-300 mt-6">
+                        Deploy WYVERN CUG and experience secure, scalable, and cost-efficient business communication.
+                    </p>
+
+                    <div className="mt-10">
+                        <a
+                            href="/contact"
+                            className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-2xl font-semibold transition"
+                        >
+                            Get Started
+                        </a>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <div className="bg-slate-950">
                 <BookSession />
-            </div >
+            </div>
 
             <Testimonial />
             <Footer />
-        </div >
+        </div>
     );
 }
